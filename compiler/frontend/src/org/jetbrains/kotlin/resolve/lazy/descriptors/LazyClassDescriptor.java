@@ -35,8 +35,10 @@ import org.jetbrains.kotlin.descriptors.impl.FunctionDescriptorImpl;
 import org.jetbrains.kotlin.incremental.components.NoLookupLocation;
 import org.jetbrains.kotlin.lexer.KtTokens;
 import org.jetbrains.kotlin.name.Name;
+import org.jetbrains.kotlin.name.SpecialNames;
 import org.jetbrains.kotlin.psi.*;
 import org.jetbrains.kotlin.psi.psiUtil.KtPsiUtilKt;
+import org.jetbrains.kotlin.psi.synthetics.SyntheticClassOrObjectDescriptor;
 import org.jetbrains.kotlin.resolve.*;
 import org.jetbrains.kotlin.resolve.lazy.ForceResolveUtil;
 import org.jetbrains.kotlin.resolve.lazy.LazyClassContext;
@@ -65,6 +67,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static kotlin.collections.CollectionsKt.firstOrNull;
+import static org.jetbrains.kotlin.descriptors.Visibilities.PUBLIC;
 import static org.jetbrains.kotlin.diagnostics.Errors.CYCLIC_INHERITANCE_HIERARCHY;
 import static org.jetbrains.kotlin.diagnostics.Errors.TYPE_PARAMETERS_IN_ENUM;
 import static org.jetbrains.kotlin.resolve.BindingContext.TYPE;
@@ -80,6 +83,9 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
     };
     private final LazyClassContext c;
 
+    @Nullable // can be null in KtScript
+    private final KtClassOrObject classOrObject;
+
     private final ClassMemberDeclarationProvider declarationProvider;
 
     private final LazyClassTypeConstructor typeConstructor;
@@ -93,7 +99,7 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
 
     private final Annotations annotations;
     private final Annotations danglingAnnotations;
-    private final NullableLazyValue<LazyClassDescriptor> companionObjectDescriptor;
+    private final NullableLazyValue<ClassDescriptorWithResolutionScopes> companionObjectDescriptor;
     private final MemoizedFunctionToNotNull<KtObjectDeclaration, ClassDescriptor> extraCompanionObjectDescriptors;
 
     private final LazyClassMemberScope unsubstitutedMemberScope;
@@ -118,7 +124,7 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
         );
         this.c = c;
 
-        KtClassOrObject classOrObject = classLikeInfo.getCorrespondingClassOrObject();
+        classOrObject = classLikeInfo.getCorrespondingClassOrObject();
         if (classOrObject != null) {
             this.c.getTrace().record(BindingContext.CLASS, classOrObject, this);
         }
@@ -210,9 +216,9 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
             );
         }
 
-        this.companionObjectDescriptor = storageManager.createNullableLazyValue(new Function0<LazyClassDescriptor>() {
+        this.companionObjectDescriptor = storageManager.createNullableLazyValue(new Function0<ClassDescriptorWithResolutionScopes>() {
             @Override
-            public LazyClassDescriptor invoke() {
+            public ClassDescriptorWithResolutionScopes invoke() {
                 return computeCompanionObjectDescriptor(getCompanionObjectIfAllowed());
             }
         });
@@ -396,7 +402,7 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
     }
 
     @Override
-    public LazyClassDescriptor getCompanionObjectDescriptor() {
+    public ClassDescriptorWithResolutionScopes getCompanionObjectDescriptor() {
         return companionObjectDescriptor.invoke();
     }
 
@@ -425,7 +431,9 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
     }
 
     @Nullable
-    private LazyClassDescriptor computeCompanionObjectDescriptor(@Nullable KtObjectDeclaration companionObject) {
+    private ClassDescriptorWithResolutionScopes computeCompanionObjectDescriptor(@Nullable KtObjectDeclaration companionObject) {
+        if (companionObject == null)
+            return createSyntheticCompanionObjectDescriptor();
         KtClassLikeInfo companionObjectInfo = getCompanionObjectInfo(companionObject);
         if (!(companionObjectInfo instanceof KtClassOrObjectInfo)) {
             return null;
@@ -434,13 +442,23 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
         assert name != null;
         getUnsubstitutedMemberScope().getContributedClassifier(name, NoLookupLocation.WHEN_GET_COMPANION_OBJECT);
         ClassDescriptor companionObjectDescriptor = c.getTrace().get(BindingContext.CLASS, companionObject);
-        if (companionObjectDescriptor instanceof LazyClassDescriptor) {
+        if (companionObjectDescriptor instanceof ClassDescriptorWithResolutionScopes) {
             assert DescriptorUtils.isCompanionObject(companionObjectDescriptor) : "Not a companion object: " + companionObjectDescriptor;
-            return (LazyClassDescriptor) companionObjectDescriptor;
+            return (ClassDescriptorWithResolutionScopes)companionObjectDescriptor;
         }
         else {
             return null;
         }
+    }
+
+    private ClassDescriptorWithResolutionScopes createSyntheticCompanionObjectDescriptor() {
+        if (!c.getSyntheticResolveExtension().needsSyntheticCompanionObject(this))
+            return null;
+        return new SyntheticClassOrObjectDescriptor(c,
+                /* parentClassOrObject= */ classOrObject,
+                this, SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT, getSource(),
+                /* outerScope= */ getOuterScope(),
+                Modality.FINAL, PUBLIC, ClassKind.OBJECT, true);
     }
 
     @Nullable
