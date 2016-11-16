@@ -120,7 +120,7 @@ private fun File.toRelativeStringOrNull(base: File): String? {
 
     val sameCount = run countSame@ {
         var i = 0
-        val maxSameCount = Math.min(thisCount, baseCount)
+        val maxSameCount = minOf(thisCount, baseCount)
         while (i < maxSameCount && thisComponents.segments[i] == baseComponents.segments[i])
             i++
         return@countSame i
