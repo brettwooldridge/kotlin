@@ -54,5 +54,6 @@
     <orderEntry type="library" name="java-decompiler-plugin" level="project" />
     <orderEntry type="module" module-name="formatter" />
     <orderEntry type="library" scope="TEST" name="native-platform-uberjar" level="project" />
+    <orderEntry type="module" module-name="kotlin-serialization-compiler" />
   </component>
 </module>
