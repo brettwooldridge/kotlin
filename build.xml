@@ -543,6 +543,65 @@
         </java>
     </target>
 
+    <target name="serialize-stdlib">
+        <cleandir dir="${output}/stdlib-metadata"/>
+
+        <!-- TODO: support generation of "common" profile in the preprocessor -->
+        <cleandir dir="${output}/stdlib-common-src"/>
+        <kotlin-pp src="libraries/stdlib/src" output="${output}/stdlib-common-src" profile="JS"/>
+
+        <local name="src.line"/>
+
+        <path id="src.path">
+            <union>
+                <!-- See jslib_files.xml -->
+                <fileset dir="${output}/stdlib-common-src">
+                    <include name="**/*.kt"/>
+                    <exclude name="**/*JVM.kt"/>
+                    <exclude name="kotlin/jvm/**"/>
+                </fileset>
+
+                <fileset dir="${basedir}/platform-stdlib">
+                    <include name="**/*.kt"/>
+                </fileset>
+            </union>
+        </path>
+
+        <pathconvert property="src.line" refid="src.path" pathsep=" "/>
+
+        <java classname="org.jetbrains.kotlin.preloading.Preloader"
+              classpath="${kotlin-home}/lib/kotlin-preloader.jar"
+              failonerror="true"
+              fork="true"
+              maxmemory="${max.heap.size.for.forked.jvm}">
+            <assertions>
+                <enable/>
+            </assertions>
+<!--
+            <jvmarg value="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"/>
+-->
+            <arg value="-cp"/>
+            <arg value="${kotlin-home}/lib/kotlin-compiler.jar"/>
+            <arg value="org.jetbrains.kotlin.cli.metadata.K2MetadataCompiler"/>
+            <arg value="-d"/>
+            <arg value="${output}/stdlib-metadata"/>
+            <arg line="${src.line}"/>
+        </java>
+    </target>
+
+    <target name="new-stdlib">
+        <new-kotlinc output="${output}/classes/new-stdlib" moduleName="kotlin-stdlib" additionalOptions="-Xmultifile-parts-inherit -Xmulti-platform">
+            <src>
+                <include name="platform-stdlib"/>
+                <include name="libraries/stdlib/src"/>
+            </src>
+            <class-path>
+                <pathelement path="${output}/classes/builtins"/>
+                <pathelement path="${output}/builtins"/>
+            </class-path>
+        </new-kotlinc>
+    </target>
+    
     <macrodef name="pack-compiler">
         <attribute name="jarfile"/>
         <attribute name="compress" default="true"/>
