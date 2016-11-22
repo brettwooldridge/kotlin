@@ -18,10 +18,12 @@ package org.jetbrains.kotlin.resolve.extensions
 
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.descriptors.ClassDescriptor
+import org.jetbrains.kotlin.descriptors.PropertyDescriptor
 import org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor
 import org.jetbrains.kotlin.extensions.ProjectExtensionDescriptor
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.types.KotlinType
+import java.util.*
 
 //----------------------------------------------------------------
 // extension interface
@@ -44,6 +46,11 @@ interface SyntheticResolveExtension {
                                                       fromSupertypes: List<SimpleFunctionDescriptor>,
                                                       result: MutableCollection<SimpleFunctionDescriptor>) =
                     instances.forEach { it.generateSyntheticMethods(thisDescriptor, name, fromSupertypes, result) }
+
+                override fun generateSyntheticProperties(thisDescriptor: ClassDescriptor, name: Name,
+                                                         fromSupertypes: ArrayList<PropertyDescriptor>,
+                                                         result: MutableSet<PropertyDescriptor>)  =
+                    instances.forEach { it.generateSyntheticProperties(thisDescriptor, name, fromSupertypes, result) }
             }
         }
     }
@@ -56,4 +63,10 @@ interface SyntheticResolveExtension {
                                  name: Name,
                                  fromSupertypes: List<SimpleFunctionDescriptor>,
                                  result: MutableCollection<SimpleFunctionDescriptor>) {}
+
+    fun generateSyntheticProperties(thisDescriptor: ClassDescriptor,
+                                    name: Name,
+                                    fromSupertypes:
+                                    ArrayList<PropertyDescriptor>,
+                                    result: MutableSet<PropertyDescriptor>) {}
 }

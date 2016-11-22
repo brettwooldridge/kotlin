@@ -257,6 +257,7 @@ open class LazyClassMemberScope(
             fromSupertypes.addAll(supertype.memberScope.getContributedVariables(name, NoLookupLocation.FOR_ALREADY_TRACKED))
         }
         result.addAll(generateDelegatingDescriptors(name, EXTRACT_PROPERTIES, result))
+        c.syntheticResolveExtension.generateSyntheticProperties(thisDescriptor, name, fromSupertypes, result)
         generateFakeOverrides(name, fromSupertypes, result, PropertyDescriptor::class.java)
     }
 
