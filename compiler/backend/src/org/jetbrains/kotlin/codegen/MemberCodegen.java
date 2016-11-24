@@ -409,7 +409,7 @@ public abstract class MemberCodegen<T extends KtElementDeclaration/* TODO: & KtD
     }
 
     @NotNull
-    protected final ExpressionCodegen createOrGetClInitCodegen() {
+    public final ExpressionCodegen createOrGetClInitCodegen() {
         if (clInit == null) {
             DeclarationDescriptor contextDescriptor = context.getContextDescriptor();
             SimpleFunctionDescriptorImpl clInitDescriptor = createClInitFunctionDescriptor(contextDescriptor);
