@@ -21,6 +21,7 @@ import org.jetbrains.kotlin.descriptors.annotations.Annotations
 import org.jetbrains.kotlin.descriptors.impl.*
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.protobuf.MessageLite
+import org.jetbrains.kotlin.serialization.Flags
 import org.jetbrains.kotlin.serialization.ProtoBuf
 import org.jetbrains.kotlin.serialization.deserialization.NameResolver
 import org.jetbrains.kotlin.serialization.deserialization.TypeTable
@@ -84,13 +85,15 @@ class DeserializedPropertyDescriptor(
         kind: CallableMemberDescriptor.Kind,
         isLateInit: Boolean,
         isConst: Boolean,
+        isExternal: Boolean,
         override val proto: ProtoBuf.Property,
         override val nameResolver: NameResolver,
         override val typeTable: TypeTable,
         override val containerSource: SourceElement?
 ) : DeserializedCallableMemberDescriptor,
         PropertyDescriptorImpl(containingDeclaration, original, annotations,
-                               modality, visibility, isVar, name, kind, SourceElement.NO_SOURCE, isLateInit, isConst, false, false) {
+                               modality, visibility, isVar, name, kind, SourceElement.NO_SOURCE, isLateInit, isConst, false, false,
+                               isExternal) {
 
     override fun createSubstitutedCopy(
             newOwner: DeclarationDescriptor,
@@ -100,10 +103,12 @@ class DeserializedPropertyDescriptor(
             kind: CallableMemberDescriptor.Kind
     ): PropertyDescriptorImpl {
         return DeserializedPropertyDescriptor(
-                newOwner, original, annotations, newModality, newVisibility, isVar, name, kind, isLateInit, isConst,
+                newOwner, original, annotations, newModality, newVisibility, isVar, name, kind, isLateInit, isConst, isExternal,
                 proto, nameResolver, typeTable, containerSource
         )
     }
+
+    override fun isExternal() = Flags.IS_EXTERNAL_PROPERTY.get(proto.flags)
 }
 
 class DeserializedClassConstructorDescriptor(
