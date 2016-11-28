@@ -56,7 +56,7 @@ class SyntheticClassOrObjectDescriptor(
         private val kind: ClassKind,
         private val isCompanionObject: Boolean
 ) : ClassDescriptorBase(c.storageManager, containingDeclaration, name, source), ClassDescriptorWithResolutionScopes {
-    private val thisDescriptor = this // code readability
+    private val thisDescriptor: SyntheticClassOrObjectDescriptor get() = this // code readability
     private val syntheticDeclaration = SyntheticDeclaration(parentClassOrObject, name.asString())
     private val typeConstructor = SyntheticTypeConstructor(c.storageManager)
     private val resolutionScopesSupport = ClassResolutionScopesSupport(thisDescriptor, c.storageManager, { outerScope })

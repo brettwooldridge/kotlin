@@ -168,14 +168,14 @@ public class DescriptorResolver {
     private KotlinType getDefaultSupertype(KtClassOrObjectDeclaration ktClass, BindingTrace trace, boolean isAnnotation) {
         // TODO : beautify
         if (ktClass instanceof KtEnumEntry) {
-            KtEnumEntry enumClass = (KtEnumEntry) ktClass;
-            KtClassOrObject parent = KtStubbedPsiUtil.getContainingDeclaration(enumClass, KtClassOrObject.class);
+            KtEnumEntry enumEntry = (KtEnumEntry) ktClass;
+            KtClassOrObject parent = KtStubbedPsiUtil.getContainingDeclaration(enumEntry, KtClassOrObject.class);
             ClassDescriptor parentDescriptor = trace.getBindingContext().get(BindingContext.CLASS, parent);
             if (parentDescriptor.getTypeConstructor().getParameters().isEmpty()) {
                 return parentDescriptor.getDefaultType();
             }
             else {
-                trace.report(NO_GENERICS_IN_SUPERTYPE_SPECIFIER.on(enumClass.getNameIdentifier()));
+                trace.report(NO_GENERICS_IN_SUPERTYPE_SPECIFIER.on(enumEntry.getNameIdentifier()));
                 return ErrorUtils.createErrorType("Supertype not specified");
             }
         }
