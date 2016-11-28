@@ -30,7 +30,6 @@ import org.jetbrains.kotlin.incremental.components.LookupLocation
 import org.jetbrains.kotlin.incremental.components.NoLookupLocation
 import org.jetbrains.kotlin.incremental.record
 import org.jetbrains.kotlin.name.Name
-import org.jetbrains.kotlin.name.SpecialNames
 import org.jetbrains.kotlin.psi.KtClassOrObject
 import org.jetbrains.kotlin.psi.KtDeclaration
 import org.jetbrains.kotlin.psi.KtProperty
@@ -218,14 +217,14 @@ open class LazyClassMemberScope(
     }
 
     private fun addSyntheticCompanionObject(result: MutableCollection<DeclarationDescriptor>, location: LookupLocation) {
-        if (!c.syntheticResolveExtension.needsSyntheticCompanionObject(thisDescriptor)) return
-        val descriptor = getClassDescriptor(SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT, location) ?: return
+        val syntheticCompanionName = c.syntheticResolveExtension.getSyntheticCompanionObjectNameIfNeeded(thisDescriptor) ?: return
+        val descriptor = getClassDescriptor(syntheticCompanionName, location) ?: return
         result.add(descriptor)
     }
 
     private fun generateSyntheticCompanionObject(name: Name, result: MutableSet<ClassDescriptor>) {
-        if (!c.syntheticResolveExtension.needsSyntheticCompanionObject(thisDescriptor)) return
-        if (name == SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT && result.none { it.isCompanionObject }) {
+        val syntheticCompanionName = c.syntheticResolveExtension.getSyntheticCompanionObjectNameIfNeeded(thisDescriptor) ?: return
+        if (name == syntheticCompanionName && result.none { it.isCompanionObject }) {
             // forces creation of companion object if needed
             val companionObjectDescriptor = thisDescriptor.companionObjectDescriptor ?: return
             result.add(companionObjectDescriptor)

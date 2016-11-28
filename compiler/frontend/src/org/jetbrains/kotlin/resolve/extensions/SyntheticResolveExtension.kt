@@ -36,8 +36,10 @@ interface SyntheticResolveExtension {
             if (instances.size == 1) return instances.single()
             // return list combiner here
             return object : SyntheticResolveExtension {
-                override fun needsSyntheticCompanionObject(thisDescriptor: ClassDescriptor): Boolean =
-                    instances.any { it.needsSyntheticCompanionObject(thisDescriptor) }
+                override fun getSyntheticCompanionObjectNameIfNeeded(thisDescriptor: ClassDescriptor): Name? =
+                    instances.asSequence()
+                        .mapNotNull { it.getSyntheticCompanionObjectNameIfNeeded(thisDescriptor) }
+                        .firstOrNull()
 
                 override fun addSyntheticSupertypes(thisDescriptor: ClassDescriptor, supertypes: MutableList<KotlinType>) =
                     instances.forEach { it.addSyntheticSupertypes(thisDescriptor, supertypes) }
@@ -55,7 +57,7 @@ interface SyntheticResolveExtension {
         }
     }
 
-    fun needsSyntheticCompanionObject(thisDescriptor: ClassDescriptor): Boolean = false
+    fun getSyntheticCompanionObjectNameIfNeeded(thisDescriptor: ClassDescriptor): Name?
 
     fun addSyntheticSupertypes(thisDescriptor: ClassDescriptor, supertypes: MutableList<KotlinType>) {}
 

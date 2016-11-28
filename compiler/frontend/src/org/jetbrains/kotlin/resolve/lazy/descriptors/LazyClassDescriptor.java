@@ -35,7 +35,6 @@ import org.jetbrains.kotlin.descriptors.impl.FunctionDescriptorImpl;
 import org.jetbrains.kotlin.incremental.components.NoLookupLocation;
 import org.jetbrains.kotlin.lexer.KtTokens;
 import org.jetbrains.kotlin.name.Name;
-import org.jetbrains.kotlin.name.SpecialNames;
 import org.jetbrains.kotlin.psi.*;
 import org.jetbrains.kotlin.psi.psiUtil.KtPsiUtilKt;
 import org.jetbrains.kotlin.psi.synthetics.SyntheticClassOrObjectDescriptor;
@@ -452,11 +451,12 @@ public class LazyClassDescriptor extends ClassDescriptorBase implements ClassDes
     }
 
     private ClassDescriptorWithResolutionScopes createSyntheticCompanionObjectDescriptor() {
-        if (!c.getSyntheticResolveExtension().needsSyntheticCompanionObject(this))
+        Name syntheticCompanionName = c.getSyntheticResolveExtension().getSyntheticCompanionObjectNameIfNeeded(this);
+        if (syntheticCompanionName == null)
             return null;
         return new SyntheticClassOrObjectDescriptor(c,
                 /* parentClassOrObject= */ classOrObject,
-                this, SpecialNames.DEFAULT_NAME_FOR_COMPANION_OBJECT, getSource(),
+                this, syntheticCompanionName, getSource(),
                 /* outerScope= */ getOuterScope(),
                 Modality.FINAL, PUBLIC, ClassKind.OBJECT, true);
     }
