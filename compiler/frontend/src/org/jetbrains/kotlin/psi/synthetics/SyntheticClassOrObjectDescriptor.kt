@@ -73,6 +73,9 @@ class SyntheticClassOrObjectDescriptor(
     override fun isCompanionObject(): Boolean = isCompanionObject
     override fun isInner(): Boolean = false
     override fun isData(): Boolean = false
+    override fun isPlatform(): Boolean = false
+    override fun isImpl(): Boolean = false
+
     override fun getCompanionObjectDescriptor(): ClassDescriptorWithResolutionScopes? = null
     override fun getTypeConstructor(): TypeConstructor = typeConstructor
     override fun getUnsubstitutedPrimaryConstructor() = unsubstitutedPrimaryConstructor
