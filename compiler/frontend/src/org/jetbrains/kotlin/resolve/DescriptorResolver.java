@@ -119,7 +119,7 @@ public class DescriptorResolver {
     public List<KotlinType> resolveSupertypes(
             @NotNull LexicalScope scope,
             @NotNull ClassDescriptor classDescriptor,
-            @Nullable KtClassOrObjectDeclaration correspondingClassOrObject,
+            @Nullable KtPureClassOrObject correspondingClassOrObject,
             BindingTrace trace
     ) {
         List<KotlinType> supertypes = Lists.newArrayList();
@@ -165,7 +165,7 @@ public class DescriptorResolver {
         return false;
     }
 
-    private KotlinType getDefaultSupertype(KtClassOrObjectDeclaration ktClass, BindingTrace trace, boolean isAnnotation) {
+    private KotlinType getDefaultSupertype(KtPureClassOrObject ktClass, BindingTrace trace, boolean isAnnotation) {
         // TODO : beautify
         if (ktClass instanceof KtEnumEntry) {
             KtEnumEntry enumEntry = (KtEnumEntry) ktClass;
@@ -459,7 +459,7 @@ public class DescriptorResolver {
 
     @NotNull
     public static ClassConstructorDescriptorImpl createAndRecordPrimaryConstructorForObject(
-            @Nullable KtClassOrObjectDeclaration object,
+            @Nullable KtPureClassOrObject object,
             @NotNull ClassDescriptor classDescriptor,
             @NotNull BindingTrace trace
     ) {

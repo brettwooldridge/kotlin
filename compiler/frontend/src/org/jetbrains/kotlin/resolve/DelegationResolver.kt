@@ -20,15 +20,15 @@ import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.descriptors.CallableMemberDescriptor.Kind.DELEGATION
 import org.jetbrains.kotlin.diagnostics.Errors.MANY_IMPL_MEMBER_NOT_IMPLEMENTED
 import org.jetbrains.kotlin.psi.KtClassOrObject
-import org.jetbrains.kotlin.psi.KtClassOrObjectDeclaration
 import org.jetbrains.kotlin.psi.KtDelegatedSuperTypeEntry
+import org.jetbrains.kotlin.psi.KtPureClassOrObject
 import org.jetbrains.kotlin.psi.KtTypeReference
 import org.jetbrains.kotlin.resolve.OverridingUtil.OverrideCompatibilityInfo.Result.OVERRIDABLE
 import org.jetbrains.kotlin.types.KotlinType
 import org.jetbrains.kotlin.types.TypeUtils
 
 class DelegationResolver<T : CallableMemberDescriptor> private constructor(
-        private val classOrObject: KtClassOrObjectDeclaration,
+        private val classOrObject: KtPureClassOrObject,
         private val ownerDescriptor: ClassDescriptor,
         private val existingMembers: Collection<CallableDescriptor>,
         private val trace: BindingTrace,
@@ -100,7 +100,7 @@ class DelegationResolver<T : CallableMemberDescriptor> private constructor(
 
     companion object {
         fun <T : CallableMemberDescriptor> generateDelegatedMembers(
-                classOrObject: KtClassOrObjectDeclaration,
+                classOrObject: KtPureClassOrObject,
                 ownerDescriptor: ClassDescriptor,
                 existingMembers: Collection<CallableDescriptor>,
                 trace: BindingTrace,

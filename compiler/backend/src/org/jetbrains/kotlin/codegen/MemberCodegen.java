@@ -74,7 +74,7 @@ import static org.jetbrains.kotlin.resolve.jvm.diagnostics.JvmDeclarationOrigin.
 import static org.jetbrains.kotlin.resolve.jvm.diagnostics.JvmDeclarationOriginKt.Synthetic;
 import static org.jetbrains.org.objectweb.asm.Opcodes.*;
 
-public abstract class MemberCodegen<T extends KtElementDeclaration/* TODO: & KtDeclarationContainer*/> implements InnerClassConsumer {
+public abstract class MemberCodegen<T extends KtPureElement/* TODO: & KtDeclarationContainer*/> implements InnerClassConsumer {
     public final GenerationState state;
 
     protected final T element;
@@ -269,7 +269,7 @@ public abstract class MemberCodegen<T extends KtElementDeclaration/* TODO: & KtD
 
     private static void genClassOrObject(
             @NotNull CodegenContext parentContext,
-            @NotNull KtClassOrObjectDeclaration aClass,
+            @NotNull KtPureClassOrObject aClass,
             @NotNull GenerationState state,
             @Nullable MemberCodegen<?> parentCodegen,
             @NotNull ClassDescriptor descriptor

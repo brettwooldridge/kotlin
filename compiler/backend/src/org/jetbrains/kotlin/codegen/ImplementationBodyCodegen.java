@@ -105,7 +105,7 @@ public class ImplementationBodyCodegen extends ClassBodyCodegen {
             new ArrayList<Function2<ImplementationBodyCodegen, ClassBuilder, Unit>>();
 
     public ImplementationBodyCodegen(
-            @NotNull KtClassOrObjectDeclaration aClass,
+            @NotNull KtPureClassOrObject aClass,
             @NotNull ClassContext context,
             @NotNull ClassBuilder v,
             @NotNull GenerationState state,

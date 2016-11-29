@@ -46,7 +46,7 @@ import org.jetbrains.kotlin.types.TypeConstructor
  */
 class SyntheticClassOrObjectDescriptor(
         c: LazyClassContext,
-        parentClassOrObject: KtClassOrObjectDeclaration,
+        parentClassOrObject: KtPureClassOrObject,
         containingDeclaration: DeclarationDescriptor,
         name: Name,
         source: SourceElement,
@@ -64,7 +64,7 @@ class SyntheticClassOrObjectDescriptor(
     private val unsubstitutedMemberScope = LazyClassMemberScope(c, SyntheticClassMemberDeclarationProvider(syntheticDeclaration), this, c.trace)
     private val unsubstitutedPrimaryConstructor = createUnsubstitutedPrimaryConstructor()
 
-    fun getSyntheticDeclaration(): KtClassOrObjectDeclaration = syntheticDeclaration
+    fun getSyntheticDeclaration(): KtPureClassOrObject = syntheticDeclaration
 
     override val annotations: Annotations get() = Annotations.EMPTY
     override fun getModality(): Modality = modality
@@ -126,9 +126,9 @@ class SyntheticClassOrObjectDescriptor(
     }
 
     internal inner class SyntheticDeclaration(
-            private val _parent: KtElementDeclaration,
+            private val _parent: KtPureElement,
             private val _name: String
-    ) : KtClassOrObjectDeclaration {
+    ) : KtPureClassOrObject {
         fun descriptor() = thisDescriptor
 
         override fun getName(): String? = _name
@@ -151,7 +151,7 @@ class SyntheticClassOrObjectDescriptor(
     }
 }
 
-fun KtElementDeclaration.findClassDescriptor(bindingContext: BindingContext): ClassDescriptor = when (this) {
+fun KtPureElement.findClassDescriptor(bindingContext: BindingContext): ClassDescriptor = when (this) {
     is PsiElement -> BindingContextUtils.getNotNull(bindingContext, BindingContext.CLASS, this)
     is SyntheticClassOrObjectDescriptor.SyntheticDeclaration -> descriptor()
     else -> throw IllegalArgumentException("$this shall be PsiElement or SyntheticClassOrObjectDescriptor.SyntheticDeclaration")

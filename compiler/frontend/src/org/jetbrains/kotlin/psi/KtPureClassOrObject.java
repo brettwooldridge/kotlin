@@ -26,7 +26,7 @@ import java.util.List;
  * A minimal interface that {@link KtClassOrObject} implements for the purpose of code-generation that does not need the full power of PSI.
  * This interface can be easily implemented by synthetic elements to generate code for them.
  */
-public interface KtClassOrObjectDeclaration extends KtElementDeclaration, KtDeclarationContainer {
+public interface KtPureClassOrObject extends KtPureElement, KtDeclarationContainer {
     @Nullable
     String getName();
 

@@ -26,7 +26,7 @@ import org.jetbrains.kotlin.descriptors.impl.ClassDescriptorImpl
 import org.jetbrains.kotlin.load.java.JvmAbi
 import org.jetbrains.kotlin.load.java.descriptors.JavaMethodDescriptor
 import org.jetbrains.kotlin.name.Name
-import org.jetbrains.kotlin.psi.KtClassOrObjectDeclaration
+import org.jetbrains.kotlin.psi.KtPureClassOrObject
 import org.jetbrains.kotlin.resolve.DescriptorToSourceUtils
 import org.jetbrains.kotlin.resolve.DescriptorUtils
 import org.jetbrains.kotlin.resolve.jvm.diagnostics.DelegationToDefaultImpls
@@ -38,7 +38,7 @@ import org.jetbrains.org.objectweb.asm.Opcodes.*
 import java.util.*
 
 class InterfaceImplBodyCodegen(
-        aClass: KtClassOrObjectDeclaration,
+        aClass: KtPureClassOrObject,
         context: ClassContext,
         v: ClassBuilder,
         state: GenerationState,

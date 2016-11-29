@@ -29,7 +29,7 @@ import org.jetbrains.kotlin.psi.stubs.KotlinClassOrObjectStub
 import org.jetbrains.kotlin.psi.stubs.elements.KtStubElementTypes
 
 abstract class KtClassOrObject :
-        KtTypeParameterListOwnerStub<KotlinClassOrObjectStub<out KtClassOrObject>>, KtDeclarationContainer, KtNamedDeclaration, KtClassOrObjectDeclaration {
+        KtTypeParameterListOwnerStub<KotlinClassOrObjectStub<out KtClassOrObject>>, KtDeclarationContainer, KtNamedDeclaration, KtPureClassOrObject {
     constructor(node: ASTNode) : super(node)
     constructor(stub: KotlinClassOrObjectStub<out KtClassOrObject>, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 

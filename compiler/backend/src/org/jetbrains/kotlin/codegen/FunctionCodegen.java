@@ -481,7 +481,7 @@ public class FunctionCodegen {
             if (indexOfLambdaOrdinal > 0) {
                 int lambdaOrdinal = Integer.parseInt(name.substring(indexOfLambdaOrdinal + 1));
 
-                KtElementDeclaration functionArgument = parentCodegen.element;
+                KtPureElement functionArgument = parentCodegen.element;
                 String functionName = "unknown";
                 if (functionArgument instanceof KtFunction) {
                     ValueParameterDescriptor inlineArgumentDescriptor =
@@ -675,7 +675,7 @@ public class FunctionCodegen {
         endVisit(mv, description, (PsiElement)null);
     }
 
-    public static void endVisit(MethodVisitor mv, @Nullable String description, @NotNull KtElementDeclaration method) {
+    public static void endVisit(MethodVisitor mv, @Nullable String description, @NotNull KtPureElement method) {
         endVisit(mv, description, (PsiElement)method.getPsiOrParent());
     }
 

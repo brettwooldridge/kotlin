@@ -19,8 +19,8 @@ package org.jetbrains.kotlin.resolve.jvm.diagnostics
 import com.intellij.psi.PsiElement
 import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.psi.KtElement
-import org.jetbrains.kotlin.psi.KtElementDeclaration
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.KtPureElement
 import org.jetbrains.kotlin.resolve.DescriptorToSourceUtils
 import org.jetbrains.kotlin.resolve.jvm.diagnostics.JvmDeclarationOriginKind.*
 
@@ -56,7 +56,7 @@ fun OtherOrigin(element: PsiElement?, descriptor: DeclarationDescriptor?): JvmDe
             JvmDeclarationOrigin.NO_ORIGIN
         else JvmDeclarationOrigin(OTHER, element, descriptor)
 
-fun OtherOrigin(element: KtElementDeclaration?, descriptor: DeclarationDescriptor?): JvmDeclarationOrigin =
+fun OtherOrigin(element: KtPureElement?, descriptor: DeclarationDescriptor?): JvmDeclarationOrigin =
         OtherOrigin(element?.psiOrParent as PsiElement, descriptor)
 
 fun OtherOrigin(element: KtElement, descriptor: DeclarationDescriptor?): JvmDeclarationOrigin =
@@ -64,7 +64,7 @@ fun OtherOrigin(element: KtElement, descriptor: DeclarationDescriptor?): JvmDecl
 
 fun OtherOrigin(element: PsiElement): JvmDeclarationOrigin = OtherOrigin(element, null)
 
-fun OtherOrigin(element: KtElementDeclaration): JvmDeclarationOrigin = OtherOrigin(element, null)
+fun OtherOrigin(element: KtPureElement): JvmDeclarationOrigin = OtherOrigin(element, null)
 
 fun OtherOrigin(element: KtElement): JvmDeclarationOrigin = OtherOrigin(element, null)
 

@@ -251,7 +251,7 @@ class FunctionDescriptorResolver(
     fun resolvePrimaryConstructorDescriptor(
             scope: LexicalScope,
             classDescriptor: ClassDescriptor,
-            classElement: KtClassOrObjectDeclaration,
+            classElement: KtPureClassOrObject,
             trace: BindingTrace
     ): ClassConstructorDescriptorImpl? {
         if (classDescriptor.getKind() == ClassKind.ENUM_ENTRY || !classElement.hasPrimaryConstructor()) return null
@@ -288,7 +288,7 @@ class FunctionDescriptorResolver(
             classDescriptor: ClassDescriptor,
             isPrimary: Boolean,
             modifierList: KtModifierList?,
-            declarationToTrace: KtElementDeclaration,
+            declarationToTrace: KtPureElement,
             valueParameters: List<KtParameter>,
             trace: BindingTrace
     ): ClassConstructorDescriptorImpl {

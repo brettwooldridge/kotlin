@@ -23,7 +23,7 @@ import org.jetbrains.annotations.NotNull;
  * A minimal interface that {@link KtElement} implements for the purpose of code-generation that does not need the full power of PSI.
  * This interface can be easily implemented by synthetic elements to generate code for them.
  */
-public interface KtElementDeclaration {
+public interface KtPureElement {
     /**
      * Returns this or parent source element (for synthetic element declarations).
      * Use it only for the purposes of source attribution.
