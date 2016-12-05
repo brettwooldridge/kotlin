@@ -38,6 +38,7 @@ import org.jetbrains.kotlin.resolve.scopes.utils.collectVariables
 import org.jetbrains.kotlin.resolve.selectMostSpecificInEachOverridableGroup
 import org.jetbrains.kotlin.types.*
 import org.jetbrains.kotlin.types.typeUtil.getImmediateSuperclassNotAny
+import org.jetbrains.kotlin.util.OperatorNameConventions
 import org.jetbrains.kotlin.utils.SmartList
 import org.jetbrains.kotlin.utils.addIfNotNull
 import org.jetbrains.kotlin.utils.toReadOnlyList
@@ -231,10 +232,13 @@ internal class HidesMembersTowerLevel(scopeTower: ImplicitScopeTower): AbstractS
             extensionReceiver: ReceiverValueWithSmartCastInfo?,
             collectCandidates: LexicalScope.(Name, LookupLocation) -> Collection<T>
     ): Collection<CandidateWithBoundDispatchReceiver<T>> {
-        if (extensionReceiver == null || name !in HIDES_MEMBERS_NAME_LIST) return emptyList()
+        // Temporary hack to resolve 'rem' over 'mod' even if 'mod' is a member, and 'rem' - an extension
+        val isRem = name == OperatorNameConventions.REM || name == OperatorNameConventions.REM_ASSIGN
+        if (extensionReceiver == null || (name !in HIDES_MEMBERS_NAME_LIST && !isRem)) return emptyList()
 
         return scopeTower.lexicalScope.collectCandidates(name, location).filter {
-            it.extensionReceiverParameter != null && it.hasHidesMembersAnnotation()
+            val isOperatorRem = isRem && it is FunctionDescriptor && it.isOperator
+            it.extensionReceiverParameter != null && (it.hasHidesMembersAnnotation() || isOperatorRem)
         }.map {
             createCandidateDescriptor(it, dispatchReceiver = null)
         }

@@ -10319,6 +10319,18 @@ public class LightAnalysisModeCodegenTestGenerated extends AbstractLightAnalysis
             doTest(fileName);
         }
 
+        @TestMetadata("remAssignmentOperation.kt")
+        public void testRemAssignmentOperation() throws Exception {
+            String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/codegen/box/operatorConventions/remAssignmentOperation.kt");
+            doTest(fileName);
+        }
+
+        @TestMetadata("remOverModOperation.kt")
+        public void testRemOverModOperation() throws Exception {
+            String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/codegen/box/operatorConventions/remOverModOperation.kt");
+            doTest(fileName);
+        }
+
         @TestMetadata("compiler/testData/codegen/box/operatorConventions/compareTo")
         @TestDataPath("$PROJECT_ROOT")
         @RunWith(JUnit3RunnerWithInners.class)
@@ -11222,12 +11234,6 @@ public class LightAnalysisModeCodegenTestGenerated extends AbstractLightAnalysis
         @TestMetadata("kt12200.kt")
         public void testKt12200() throws Exception {
             String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/codegen/box/properties/kt12200.kt");
-            doTest(fileName);
-        }
-
-        @TestMetadata("kt12200Const.kt")
-        public void testKt12200Const() throws Exception {
-            String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/codegen/box/properties/kt12200Const.kt");
             doTest(fileName);
         }
 
