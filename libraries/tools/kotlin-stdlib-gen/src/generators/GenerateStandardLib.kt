@@ -75,7 +75,11 @@ private fun Sequence<GenericFunction>.groupByFileAndWrite(
         platform: Platform,
         fileNameBuilder: (SourceFile) -> String = { "_${it.name.capitalize()}.kt" }
 ) {
-    val groupedConcreteFunctions = map { it.instantiate(platform) }.flatten().groupBy { it.sourceFile }
+    val groupedConcreteFunctions =
+            map { it.instantiate(platform) }.flatten()
+            .groupBy { it.sourceFile }
+            // TODO: Change sort order here
+            // .mapValues { it.value.sortedBy { it.signature } }
 
     for ((sourceFile, functions) in groupedConcreteFunctions) {
         val file = outDir.resolve(fileNameBuilder(sourceFile))

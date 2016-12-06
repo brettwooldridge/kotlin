@@ -160,7 +160,7 @@ class InlineProperty : PlatformFamilyProperty<Inline>()
 operator fun InlineProperty.invoke(vararg keys: Family) = set(null, keys.asList(), Inline.Yes)
 operator fun InlineProperty.invoke(value: Boolean, vararg keys: Family) = set(null, keys.asList(), if (value) Inline.Yes else Inline.No)
 
-class ConcreteFunction(val textBuilder: (Appendable) -> Unit, val sourceFile: SourceFile)
+class ConcreteFunction(val signature: String, val textBuilder: (Appendable) -> Unit, val sourceFile: SourceFile)
 
 class GenericFunction(val signature: String, val keyword: String = "fun") {
 
@@ -270,9 +270,9 @@ class GenericFunction(val signature: String, val keyword: String = "fun") {
 
         if (f.isPrimitiveSpecialization || buildFamilyPrimitives.isSpecializedFor(platform, f)) {
             return (onlyPrimitives).sortedBy { it.ordinal }
-                    .map { primitive -> ConcreteFunction( { build(it, f, primitive, platform) }, sourceFileFor(f) ) }
+                    .map { primitive -> ConcreteFunction(signature, { build(it, f, primitive, platform) }, sourceFileFor(f) ) }
         } else {
-            return listOf(ConcreteFunction( { build(it, f, null, platform) }, sourceFileFor(f) ))
+            return listOf(ConcreteFunction(signature, { build(it, f, null, platform) }, sourceFileFor(f) ))
         }
     }
 
