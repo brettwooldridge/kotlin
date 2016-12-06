@@ -155,20 +155,24 @@ class NewResolutionOldInference(
         val dynamicScope = dynamicCallableDescriptors.createDynamicDescriptorScope(context.call, context.scope.ownerDescriptor)
         val scopeTower = ImplicitScopeTowerImpl(context, dynamicScope, syntheticScopes, syntheticConstructorsProvider, context.call.createLookupLocation())
 
-        var processor = kind.createTowerProcessor(this, name, tracing, scopeTower, detailedReceiver, context)
+        val processor = kind.createTowerProcessor(this, name, tracing, scopeTower, detailedReceiver, context)
 
         if (context.collectAllCandidates) {
             return allCandidatesResult(towerResolver.collectAllCandidates(scopeTower, processor))
         }
 
+        var candidates = towerResolver.runResolve(scopeTower, processor, useOrder = kind != ResolutionKind.CallableReference)
+
         // Temporary hack to resolve 'rem' as 'mod' if the first is do not present
-        if (isBinaryRemOperator(context.call)) {
+        val emptyOrInapplicableCandidates = candidates.isEmpty() ||
+                                            candidates.all {
+                                                it.candidateStatus.resultingApplicability == ResolutionCandidateApplicability.INAPPLICABLE
+                                            }
+        if (emptyOrInapplicableCandidates && isBinaryRemOperator(context.call)) {
             val deprecatedName = OperatorConventions.REM_TO_MOD_OPERATION_NAMES[name]
             val processorForDeprecatedName = kind.createTowerProcessor(this, deprecatedName!!, tracing, scopeTower, detailedReceiver, context)
-            processor = CompositeScopeTowerProcessor(processor, processorForDeprecatedName)
+            candidates = towerResolver.runResolve(scopeTower, processorForDeprecatedName, useOrder = kind != ResolutionKind.CallableReference)
         }
-
-        val candidates = towerResolver.runResolve(scopeTower, processor, useOrder = kind != ResolutionKind.CallableReference)
 
         if (candidates.isEmpty()) {
             if (reportAdditionalDiagnosticIfNoCandidates(context, name, kind, scopeTower, detailedReceiver)) {
