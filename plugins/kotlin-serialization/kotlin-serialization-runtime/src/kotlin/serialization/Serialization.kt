@@ -350,6 +350,7 @@ open class NamedValueOutput(rootName: String = "") : KOutput() {
     // ------- API (override it) -------
 
     open fun writeNamed(name: String, value: Any) { throw SerializationException("value is not supported for $name") }
+    open fun writeNamedNotNullMark(name: String) {}
     open fun writeNamedNull(name: String) { throw SerializationException("null is not supported for $name") }
     open fun writeNamedUnit(name: String) = writeNamed(name, Unit)
     open fun writeNamedBoolean(name: String, value: Boolean) = writeNamed(name, value)
@@ -374,7 +375,7 @@ open class NamedValueOutput(rootName: String = "") : KOutput() {
     // ------- implementation -------
 
     override final fun writeElement(desc: KSerialClassDesc, index: Int): Boolean { pushName(name(desc, index)); return true }
-    override final fun writeNotNullMark() {}
+    override final fun writeNotNullMark() { writeNamedNotNullMark(currentName()) }
     override final fun writeNullValue() { writeNamedNull(popName()) }
     override final fun writeValue(value: Any) { writeNamed(popName(), value) }
     override final fun writeNullableValue(value: Any?) { writeNamedNullable(popName(), value) }
