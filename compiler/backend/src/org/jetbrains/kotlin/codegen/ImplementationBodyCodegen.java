@@ -37,9 +37,6 @@ import org.jetbrains.kotlin.codegen.signature.BothSignatureWriter;
 import org.jetbrains.kotlin.codegen.signature.JvmSignatureWriter;
 import org.jetbrains.kotlin.codegen.state.GenerationState;
 import org.jetbrains.kotlin.codegen.state.KotlinTypeMapper;
-import org.jetbrains.kotlin.config.CommonConfigurationKeys;
-import org.jetbrains.kotlin.config.LanguageVersionSettings;
-import org.jetbrains.kotlin.config.LanguageVersionSettingsImpl;
 import org.jetbrains.kotlin.descriptors.*;
 import org.jetbrains.kotlin.incremental.components.NoLookupLocation;
 import org.jetbrains.kotlin.lexer.KtTokens;
@@ -481,7 +478,13 @@ public class ImplementationBodyCodegen extends ClassBodyCodegen {
         }
     }
 
-    public Type genPropertyOnStack(InstructionAdapter iv, MethodContext context, @NotNull PropertyDescriptor propertyDescriptor, int index) {
+    public Type genPropertyOnStack(
+            InstructionAdapter iv,
+            MethodContext context,
+            @NotNull PropertyDescriptor propertyDescriptor,
+            Type classAsmType,
+            int index
+    ) {
         iv.load(index, classAsmType);
         if (couldUseDirectAccessToProperty(propertyDescriptor, /* forGetter = */ true,
                                                /* isDelegated = */ false, context, state.getShouldInlineConstVals())) {
@@ -537,10 +540,10 @@ public class ImplementationBodyCodegen extends ClassBodyCodegen {
             for (PropertyDescriptor propertyDescriptor : properties) {
                 Type asmType = typeMapper.mapType(propertyDescriptor);
 
-                Type thisPropertyType = genPropertyOnStack(iv, context, propertyDescriptor, 0);
+                Type thisPropertyType = genPropertyOnStack(iv, context, propertyDescriptor, ImplementationBodyCodegen.this.classAsmType, 0);
                 StackValue.coerce(thisPropertyType, asmType, iv);
 
-                Type otherPropertyType = genPropertyOnStack(iv, context, propertyDescriptor, 2);
+                Type otherPropertyType = genPropertyOnStack(iv, context, propertyDescriptor, ImplementationBodyCodegen.this.classAsmType, 2);
                 StackValue.coerce(otherPropertyType, asmType, iv);
 
                 if (asmType.getSort() == Type.FLOAT) {
@@ -583,7 +586,7 @@ public class ImplementationBodyCodegen extends ClassBodyCodegen {
                     iv.mul(Type.INT_TYPE);
                 }
 
-                Type propertyType = genPropertyOnStack(iv, context, propertyDescriptor,0);
+                Type propertyType = genPropertyOnStack(iv, context, propertyDescriptor, ImplementationBodyCodegen.this.classAsmType, 0);
                 Type asmType = typeMapper.mapType(propertyDescriptor);
                 StackValue.coerce(propertyType, asmType, iv);
 
@@ -638,7 +641,7 @@ public class ImplementationBodyCodegen extends ClassBodyCodegen {
                 }
                 genInvokeAppendMethod(iv, JAVA_STRING_TYPE);
 
-                Type type = genPropertyOnStack(iv, context, propertyDescriptor, 0);
+                Type type = genPropertyOnStack(iv, context, propertyDescriptor, ImplementationBodyCodegen.this.classAsmType, 0);
 
                 if (type.getSort() == Type.ARRAY) {
                     Type elementType = correctElementType(type);
@@ -684,7 +687,7 @@ public class ImplementationBodyCodegen extends ClassBodyCodegen {
                                 bindingContext.get(BindingContext.PRIMARY_CONSTRUCTOR_PARAMETER, descriptorToDeclaration(parameter));
                         assert property != null : "Property descriptor is not found for primary constructor parameter: " + parameter;
 
-                        Type propertyType = genPropertyOnStack(iv, context, property, 0);
+                        Type propertyType = genPropertyOnStack(iv, context, property, ImplementationBodyCodegen.this.classAsmType, 0);
                         StackValue.coerce(propertyType, componentType, iv);
                     }
                     iv.areturn(componentType);
