@@ -61,11 +61,6 @@ protected constructor(
         return result.toReadOnlyList()
     }
 
-    fun getClassDescriptor(name: Name, location: LookupLocation): ClassDescriptor? {
-        recordLookup(name, location)
-        return classDescriptors(name).firstOrNull()
-    }
-
     override fun getContributedClassifier(name: Name, location: LookupLocation): ClassifierDescriptor? {
         recordLookup(name, location)
         // NB we should resolve type alias descriptors even if a class descriptor with corresponding name is present

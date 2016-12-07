@@ -218,7 +218,7 @@ open class LazyClassMemberScope(
 
     private fun addSyntheticCompanionObject(result: MutableCollection<DeclarationDescriptor>, location: LookupLocation) {
         val syntheticCompanionName = c.syntheticResolveExtension.getSyntheticCompanionObjectNameIfNeeded(thisDescriptor) ?: return
-        val descriptor = getClassDescriptor(syntheticCompanionName, location) ?: return
+        val descriptor = getContributedClassifier(syntheticCompanionName, location) ?: return
         result.add(descriptor)
     }
 

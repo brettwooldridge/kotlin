@@ -23,6 +23,7 @@ import org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor
 import org.jetbrains.kotlin.extensions.ProjectExtensionDescriptor
 import org.jetbrains.kotlin.name.Name
 import org.jetbrains.kotlin.types.KotlinType
+import org.jetbrains.kotlin.utils.addToStdlib.firstNotNullResult
 import java.util.*
 
 //----------------------------------------------------------------
@@ -37,9 +38,7 @@ interface SyntheticResolveExtension {
             // return list combiner here
             return object : SyntheticResolveExtension {
                 override fun getSyntheticCompanionObjectNameIfNeeded(thisDescriptor: ClassDescriptor): Name? =
-                    instances.asSequence()
-                        .mapNotNull { it.getSyntheticCompanionObjectNameIfNeeded(thisDescriptor) }
-                        .firstOrNull()
+                    instances.firstNotNullResult { it.getSyntheticCompanionObjectNameIfNeeded(thisDescriptor) }
 
                 override fun addSyntheticSupertypes(thisDescriptor: ClassDescriptor, supertypes: MutableList<KotlinType>) =
                     instances.forEach { it.addSyntheticSupertypes(thisDescriptor, supertypes) }

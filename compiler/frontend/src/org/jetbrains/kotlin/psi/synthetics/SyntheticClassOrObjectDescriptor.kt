@@ -56,41 +56,38 @@ class SyntheticClassOrObjectDescriptor(
         private val kind: ClassKind,
         private val isCompanionObject: Boolean
 ) : ClassDescriptorBase(c.storageManager, containingDeclaration, name, source), ClassDescriptorWithResolutionScopes {
+    val syntheticDeclaration: KtPureClassOrObject = SyntheticDeclaration(parentClassOrObject, name.asString())
+
     private val thisDescriptor: SyntheticClassOrObjectDescriptor get() = this // code readability
-    private val syntheticDeclaration = SyntheticDeclaration(parentClassOrObject, name.asString())
     private val typeConstructor = SyntheticTypeConstructor(c.storageManager)
     private val resolutionScopesSupport = ClassResolutionScopesSupport(thisDescriptor, c.storageManager, { outerScope })
     private val syntheticSupertypes = mutableListOf<KotlinType>().apply { c.syntheticResolveExtension.addSyntheticSupertypes(thisDescriptor, this) }
     private val unsubstitutedMemberScope = LazyClassMemberScope(c, SyntheticClassMemberDeclarationProvider(syntheticDeclaration), this, c.trace)
     private val unsubstitutedPrimaryConstructor = createUnsubstitutedPrimaryConstructor()
 
-    fun getSyntheticDeclaration(): KtPureClassOrObject = syntheticDeclaration
-
     override val annotations: Annotations get() = Annotations.EMPTY
-    override fun getModality(): Modality = modality
-    override fun getVisibility(): Visibility = visibility
-    override fun getKind(): ClassKind = kind
-    override fun isCompanionObject(): Boolean = isCompanionObject
-    override fun isInner(): Boolean = false
-    override fun isData(): Boolean = false
-    override fun isPlatform(): Boolean = false
-    override fun isImpl(): Boolean = false
 
-    override fun getCompanionObjectDescriptor(): ClassDescriptorWithResolutionScopes? = null
+    override fun getModality() = modality
+    override fun getVisibility() = visibility
+    override fun getKind() = kind
+    override fun isCompanionObject() = isCompanionObject
+    override fun isInner() = false
+    override fun isData() = false
+    override fun isPlatform() = false
+    override fun isImpl() = false
+
+    override fun getCompanionObjectDescriptor() = null
     override fun getTypeConstructor(): TypeConstructor = typeConstructor
     override fun getUnsubstitutedPrimaryConstructor() = unsubstitutedPrimaryConstructor
-    override fun getConstructors(): Collection<ClassConstructorDescriptor> = listOf(unsubstitutedPrimaryConstructor)
-    override fun getDeclaredTypeParameters(): List<TypeParameterDescriptor> = emptyList()
-    override fun getStaticScope(): MemberScope = MemberScope.Empty
-    override fun getUnsubstitutedMemberScope(): MemberScope = unsubstitutedMemberScope
+    override fun getConstructors() = listOf(unsubstitutedPrimaryConstructor)
+    override fun getDeclaredTypeParameters() = emptyList<TypeParameterDescriptor>()
+    override fun getStaticScope() = MemberScope.Empty
+    override fun getUnsubstitutedMemberScope() = unsubstitutedMemberScope
 
-    override fun getDeclaredCallableMembers(): List<CallableMemberDescriptor> {
-        val result = mutableListOf<CallableMemberDescriptor>()
-        for (descriptor in DescriptorUtils.getAllDescriptors(unsubstitutedMemberScope))
-            if (descriptor is CallableMemberDescriptor && descriptor.kind != CallableMemberDescriptor.Kind.FAKE_OVERRIDE)
-                result.add(descriptor)
-        return result
-    }
+    override fun getDeclaredCallableMembers(): List<CallableMemberDescriptor> =
+        DescriptorUtils.getAllDescriptors(unsubstitutedMemberScope).filterIsInstance<CallableMemberDescriptor>().filter {
+            it.kind != CallableMemberDescriptor.Kind.FAKE_OVERRIDE
+        }
 
     override fun getScopeForClassHeaderResolution(): LexicalScope = resolutionScopesSupport.scopeForClassHeaderResolution()
     override fun getScopeForConstructorHeaderResolution(): LexicalScope = resolutionScopesSupport.scopeForConstructorHeaderResolution()
@@ -118,7 +115,7 @@ class SyntheticClassOrObjectDescriptor(
     }
 
     private class SyntheticClassMemberDeclarationProvider(
-            override val correspondingClassOrObject: SyntheticDeclaration
+            override val correspondingClassOrObject: KtPureClassOrObject
     ) : ClassMemberDeclarationProvider {
         override val ownerInfo: KtClassLikeInfo? = null
         override fun getDeclarations(kindFilter: DescriptorKindFilter, nameFilter: (Name) -> Boolean): List<KtDeclaration> = emptyList()
