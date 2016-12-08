@@ -1359,7 +1359,7 @@
         <junit printsummary="on">
             <classpath>
                 <pathelement path="${kotlin-home}/lib/kotlin-runtime.jar"/>
-                <pathelement path="${kotlin-home}/lib/kotlin-reflection.jar"/>
+                <pathelement path="${kotlin-home}/lib/kotlin-reflect.jar"/>
                 <pathelement path="${kotlin-home}/lib/kotlin-serialization-runtime.jar"/>
                 <pathelement path="${idea.sdk}/lib/junit-4.12.jar"/>
                 <pathelement path="${idea.sdk}/lib/hamcrest-core-1.3.jar"/>
