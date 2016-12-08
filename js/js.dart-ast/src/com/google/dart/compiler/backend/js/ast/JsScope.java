@@ -43,7 +43,7 @@ public abstract class JsScope {
     @NotNull
     private final String description;
     private Map<String, JsName> names = Collections.emptyMap();
-    private final Map<JsName, Object> temporaryNames = new WeakHashMap<JsName, Object>();
+    private Map<JsName, Object> temporaryNames;
     private Set<JsName> readonlyTemporaryNames = null;
     private final JsScope parent;
 
@@ -60,6 +60,9 @@ public abstract class JsScope {
     }
 
     public Set<JsName> getTemporaryNames() {
+        if (temporaryNames == null) {
+            return Collections.emptySet();
+        }
         if (readonlyTemporaryNames == null) {
             readonlyTemporaryNames = Collections.unmodifiableSet(temporaryNames.keySet());
         }
@@ -103,6 +106,9 @@ public abstract class JsScope {
     public JsName declareTemporaryName(@NotNull String suggestedName) {
         assert !suggestedName.isEmpty();
         JsName name = new JsName(this, suggestedName, true);
+        if (temporaryNames == null) {
+            temporaryNames = new WeakHashMap<JsName, Object>();
+        }
         temporaryNames.put(name, this);
         return name;
     }
