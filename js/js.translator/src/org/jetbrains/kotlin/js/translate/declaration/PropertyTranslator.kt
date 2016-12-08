@@ -97,14 +97,9 @@ class DefaultPropertyTranslator(
             delegatedCall: ResolvedCall<FunctionDescriptor>,
             function: JsFunction
     ) {
-        val delegateContext = context().contextWithPropertyMetadataCreationIntrinsified(delegatedCall, descriptor)
+        val host = translateHost(getterDescriptor, function)
+        val delegateContext = context().contextWithPropertyMetadataCreationIntrinsified(delegatedCall, descriptor, host)
         val delegatedJsCall = CallTranslator.translate(delegateContext, delegatedCall, delegateReference)
-
-        if (getterDescriptor.isExtension) {
-            val receiver = function.addParameter(getReceiverParameterName()).name
-            val arguments = (delegatedJsCall as JsInvocation).arguments
-            arguments[0] = receiver.makeRef()
-        }
 
         val returnResult = JsReturn(delegatedJsCall)
         function.addStatement(returnResult)
@@ -118,7 +113,8 @@ class DefaultPropertyTranslator(
         val delegatedCall = bindingContext()[BindingContext.DELEGATED_PROPERTY_RESOLVED_CALL, setterDescriptor]
 
         if (delegatedCall != null) {
-            val delegateContext = withAliased.contextWithPropertyMetadataCreationIntrinsified(delegatedCall, descriptor)
+            val host = translateHost(setterDescriptor, function)
+            val delegateContext = withAliased.contextWithPropertyMetadataCreationIntrinsified(delegatedCall, descriptor, host)
             val delegatedJsCall = CallTranslator.translate(delegateContext, delegatedCall, delegateReference)
             function.addStatement(delegatedJsCall.makeStmt())
 
@@ -134,6 +130,15 @@ class DefaultPropertyTranslator(
             function.addStatement(assignment.makeStmt())
         }
     }
+
+    private fun translateHost(accessorDescriptor: VariableAccessorDescriptor, function: JsFunction): JsExpression {
+        return if (accessorDescriptor.isExtension) {
+            function.addParameter(getReceiverParameterName()).name.makeRef()
+        }
+        else {
+            JsLiteral.THIS
+        }
+    }
 }
 
 fun TranslationContext.translateDelegateOrInitializerExpression(expression: KtProperty): JsExpression? {
@@ -143,7 +148,7 @@ fun TranslationContext.translateDelegateOrInitializerExpression(expression: KtPr
     val initializer = Translation.translateAsExpression(expressionPsi, this)
     val toDelegateForCall = bindingContext()[BindingContext.TO_DELEGATE_FOR_RESOLVED_CALL, propertyDescriptor]
     return if (toDelegateForCall != null) {
-        val innerContext = this.contextWithPropertyMetadataCreationIntrinsified(toDelegateForCall, propertyDescriptor)
+        val innerContext = this.contextWithPropertyMetadataCreationIntrinsified(toDelegateForCall, propertyDescriptor, JsLiteral.THIS)
         CallTranslator.translate(innerContext, toDelegateForCall, initializer)
     }
     else {
@@ -153,7 +158,8 @@ fun TranslationContext.translateDelegateOrInitializerExpression(expression: KtPr
 
 fun TranslationContext.contextWithPropertyMetadataCreationIntrinsified(
         delegatedCall: ResolvedCall<FunctionDescriptor>,
-        property: VariableDescriptorWithAccessors
+        property: VariableDescriptorWithAccessors,
+        host: JsExpression
 ): TranslationContext {
     val propertyNameLiteral = program().getStringLiteral(property.name.asString())
     // 0th argument is instance, 1st is KProperty, 2nd (for setter) is value
@@ -162,7 +168,7 @@ fun TranslationContext.contextWithPropertyMetadataCreationIntrinsified(
     val fakeArgumentExpression =
             (delegatedCall.valueArgumentsByIndex!![1] as ExpressionValueArgument).valueArgument!!.getArgumentExpression()
     return innerContextWithAliasesForExpressions(mapOf(
-            hostExpression to JsLiteral.THIS,
+            hostExpression to host,
             fakeArgumentExpression to JsNew(pureFqn("PropertyMetadata", Namer.kotlinObject()), listOf(propertyNameLiteral))
     ))
 }
