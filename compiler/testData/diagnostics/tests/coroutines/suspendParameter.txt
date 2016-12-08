@@ -1,0 +1,4 @@
+package
+
+public fun async1(/*0*/ x: () -> kotlin.Unit): kotlin.Unit
+public fun async2(/*0*/ x: kotlin.Unit): kotlin.Unit

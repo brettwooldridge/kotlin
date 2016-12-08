@@ -20,7 +20,7 @@ package kotlin.coroutines
  * This function allows to obtain a continuation instance inside the suspend functions.
  * As a suspend function may be only tail-called inside another suspend function, this call will be used as a return value of the latter one.
  *
- * If the [body] returns the [Suspend] object, that means that suspend-function cannot return a value immediately,
+ * If the [body] returns the [SuspendMarker] object, that means that suspend-function cannot return a value immediately,
  * i.e. it's literally suspends continuation, and the continuation will be resumed at some moment in the future.
  *
  * Otherwise return value must have a type assignable to 'T'.

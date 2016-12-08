@@ -4312,6 +4312,12 @@ public class DiagnosticsTestGenerated extends AbstractDiagnosticsTest {
                 doTest(fileName);
             }
 
+            @TestMetadata("suspendParameter.kt")
+            public void testSuspendParameter() throws Exception {
+                String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/coroutines/suspendParameter.kt");
+                doTest(fileName);
+            }
+
             @TestMetadata("suspendWithCurrentContinuation.kt")
             public void testSuspendWithCurrentContinuation() throws Exception {
                 String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/coroutines/suspendWithCurrentContinuation.kt");

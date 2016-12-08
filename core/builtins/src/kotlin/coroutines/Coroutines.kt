@@ -48,4 +48,9 @@ public annotation class AllowSuspendExtensions
  * i.e. it's literally suspends continuation, so no stack-unwinding will be performed by the continuation.
  */
 @SinceKotlin("1.1")
-public object Suspend
+public object SuspendMarker
+
+@SinceKotlin("1.1")
+@Target(AnnotationTarget.TYPE)
+@Retention(AnnotationRetention.BINARY)
+public annotation class Suspend

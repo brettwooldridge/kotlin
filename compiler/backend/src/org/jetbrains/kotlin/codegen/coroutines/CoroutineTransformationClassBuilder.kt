@@ -121,9 +121,9 @@ class CoroutineTransformerMethodVisitor(
                          insnListOf(
                                  FieldInsnNode(
                                          Opcodes.GETSTATIC,
-                                         AsmTypes.COROUTINES_SUSPEND.internalName,
+                                         AsmTypes.COROUTINES_SUSPEND_MARKER.internalName,
                                          JvmAbi.INSTANCE_FIELD,
-                                         AsmTypes.COROUTINES_SUSPEND.descriptor
+                                         AsmTypes.COROUTINES_SUSPEND_MARKER.descriptor
                                  ),
                                  VarInsnNode(Opcodes.ASTORE, suspendMarkerVarIndex),
                                  VarInsnNode(Opcodes.ALOAD, 0),
@@ -349,7 +349,7 @@ class CoroutineTransformerMethodVisitor(
 
             insert(suspension.tryCatchBlockEndLabelAfterSuspensionCall, withInstructionAdapter {
                 dup()
-                load(suspendMarkerVarIndex, AsmTypes.COROUTINES_SUSPEND)
+                load(suspendMarkerVarIndex, AsmTypes.COROUTINES_SUSPEND_MARKER)
                 ifacmpne(continuationLabelAfterLoadedResult.label)
 
                 // Exit

@@ -25,35 +25,45 @@ fun gen() = generate<Int> {
 }
 
 // LIBRARY CODE
-fun <T> generate(coroutine c: GeneratorController<T>.() -> Continuation<Unit>): Sequence<T> = object : Sequence<T> {
-    override fun iterator(): Iterator<T> {
-        val iterator = GeneratorController<T>()
-        iterator.setNextStep(c(iterator))
-        return iterator
-    }
+
+interface Generator<T> {
+    suspend fun yield(value: T)
 }
 
-class GeneratorController<T>() : AbstractIterator<T>() {
-    private lateinit var nextStep: Continuation<Unit>
+fun <T> generate(block: @Suspend() (Generator<T>.() -> Unit)): Sequence<T> = GeneratedSequence(block)
 
-    override fun computeNext() {
-        nextStep.resume(Unit)
+class GeneratedSequence<T>(private val block: @Suspend() (Generator<T>.() -> Unit)) : Sequence<T> {
+    override fun iterator(): Iterator<T> = GeneratedIterator(block)
+}
+
+class GeneratedIterator<T>( block: @Suspend() (Generator<T>.() -> Unit)) : Iterator<T>, Generator<T> {
+    var nextStep: Continuation<Unit>? = null
+    var lastValue: T? = null
+
+    init {
+        (block as (Generator<T>, Continuation<Unit>) -> Any?).invoke(this, object : Continuation<Unit> {
+            override fun resume(data: Unit) {
+                nextStep = null
+            }
+
+            override fun resumeWithException(exception: Throwable) {
+                throw exception
+            }
+        })
     }
 
-    fun setNextStep(step: Continuation<Unit>) {
-        this.nextStep = step
+    override suspend fun yield(value: T) = suspendWithCurrentContinuation { c: Continuation<Unit> ->
+        nextStep = c
+        lastValue = value
+
+        SuspendMarker
     }
 
-    suspend fun yield(value: T): Unit = suspendWithCurrentContinuation { c ->
-        setNext(value)
-        setNextStep(c)
+    override fun hasNext(): Boolean = nextStep != null
 
-        Suspend
+    override fun next(): T {
+        val result = lastValue as T
+        nextStep!!.resume(Unit)
+        return result
     }
-
-    operator fun handleResult(result: Unit, c: Continuation<Nothing>) {
-        done()
-    }
-
-    // INTERCEPT_RESUME_PLACEHOLDER
 }

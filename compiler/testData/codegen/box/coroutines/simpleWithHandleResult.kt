@@ -1,24 +1,27 @@
 // IGNORE_BACKEND: JS
-class Controller {
+
+suspend fun suspendHere(): String = suspendWithCurrentContinuation { x ->
+    x.resume("OK")
+    SuspendMarker
+}
+
+fun builder(c: @Suspend() () -> Int): Int {
     var res = 0
-    suspend fun suspendHere(): String = suspendWithCurrentContinuation { x ->
-        x.resume("OK")
-        Suspend
-    }
 
-    operator fun handleResult(x: Int, y: Continuation<Nothing>) {
-        res = x
-    }
+    (c as ((Continuation<Int>) -> Int))(object : Continuation<Int> {
+        override fun resume(data: Int) {
+            res = data
+        }
 
-    // INTERCEPT_RESUME_PLACEHOLDER
+        override fun resumeWithException(exception: Throwable) {
+            throw exception
+        }
+    })
+
+    return res
 }
 
-fun builder(coroutine c: Controller.() -> Continuation<Unit>): Int {
-    val controller = Controller()
-    c(controller).resume(Unit)
 
-    return controller.res
-}
 
 fun box(): String {
     var result = ""
