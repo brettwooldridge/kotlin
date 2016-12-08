@@ -18,7 +18,6 @@ package org.jetbrains.kotlin.js.translate.expression
 
 import com.google.dart.compiler.backend.js.ast.*
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
-import org.jetbrains.kotlin.descriptors.DeclarationDescriptor
 import org.jetbrains.kotlin.js.descriptorUtils.getJetTypeFqName
 import org.jetbrains.kotlin.js.translate.context.TranslationContext
 import org.jetbrains.kotlin.js.translate.general.AbstractTranslator
@@ -84,10 +83,10 @@ class CatchTranslator(
 
     private fun translateCatches(
             context: TranslationContext,
-            prevParameterRef: JsNameRef,
+            initialCatchParameterRef: JsNameRef,
             catches: Iterator<KtCatchClause>
     ): JsStatement {
-        if (!catches.hasNext()) return JsThrow(prevParameterRef)
+        if (!catches.hasNext()) return JsThrow(initialCatchParameterRef)
 
         var nextContext = context
 
@@ -98,14 +97,14 @@ class CatchTranslator(
         val paramType = param.typeReference!!
 
         val additionalStatements = mutableListOf<JsStatement>()
-        val parameterRef = if (parameterName.ident != prevParameterRef.ident) {
+        val parameterRef = if (parameterName.ident != initialCatchParameterRef.ident) {
             val parameterAlias = context.scope().declareTemporaryName(parameterName.ident)
-            additionalStatements += JsAstUtils.newVar(parameterAlias, prevParameterRef)
+            additionalStatements += JsAstUtils.newVar(parameterAlias, initialCatchParameterRef)
             val ref = JsAstUtils.pureFqn(parameterAlias, null)
             ref
         }
         else {
-            prevParameterRef
+            initialCatchParameterRef
         }
         nextContext = nextContext.innerContextWithAliased(parameterDescriptor, parameterRef)
         val thenBlock = translateCatchBody(nextContext, catch)
@@ -115,10 +114,10 @@ class CatchTranslator(
 
         // translateIsCheck won't ever return `null` if its second argument is `null`
         val typeCheck = with (patternTranslator(nextContext)) {
-            translateIsCheck(prevParameterRef, null, paramType)
+            translateIsCheck(initialCatchParameterRef, null, paramType)
         }!!
 
-        val elseBlock = translateCatches(context, prevParameterRef, catches)
+        val elseBlock = translateCatches(context, initialCatchParameterRef, catches)
         return JsIf(typeCheck, thenBlock, elseBlock)
     }
 
