@@ -109,8 +109,7 @@ public final class AnnotationsUtils {
 
         if (descriptor instanceof PropertyAccessorDescriptor) {
             PropertyAccessorDescriptor accessor = (PropertyAccessorDescriptor) descriptor;
-            return hasAnnotationOrInsideAnnotatedClass(accessor.getCorrespondingProperty(), PredefinedAnnotation.NATIVE) ||
-                   isEffectivelyExternal(accessor.getCorrespondingProperty());
+            return hasAnnotationOrInsideAnnotatedClass(accessor.getCorrespondingProperty(), PredefinedAnnotation.NATIVE);
         }
 
         return false;
