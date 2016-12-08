@@ -51,7 +51,7 @@ interface TypeMappingConfiguration<out T : Any> {
 
     fun commonSupertype(types: Collection<@JvmSuppressWildcards KotlinType>): KotlinType
     fun getPredefinedTypeForClass(classDescriptor: ClassDescriptor): T?
-    fun getPredefinedTypeNameForClass(classDescriptor: ClassDescriptor): String?
+    fun getPredefinedInternalNameForClass(classDescriptor: ClassDescriptor): String?
     fun processErrorType(kotlinType: KotlinType, descriptor: ClassDescriptor)
 }
 
@@ -203,7 +203,7 @@ internal fun computeInternalName(
         throw IllegalArgumentException("Unexpected container: $container for $klass")
 
     val containerInternalName =
-            typeMappingConfiguration.getPredefinedTypeNameForClass(containerClass) ?:
+            typeMappingConfiguration.getPredefinedInternalNameForClass(containerClass) ?:
             computeInternalName(containerClass, typeMappingConfiguration)
     return if (klass.kind == ClassKind.ENUM_ENTRY) containerInternalName
         else typeMappingConfiguration.innerClassNameFactory(containerInternalName, name)

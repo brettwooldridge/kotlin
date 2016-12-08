@@ -136,9 +136,9 @@ public class KotlinTypeMapper {
 
         @Nullable
         @Override
-        public String getPredefinedTypeNameForClass(@NotNull ClassDescriptor classDescriptor) {
+        public String getPredefinedInternalNameForClass(@NotNull ClassDescriptor classDescriptor) {
             Type type = getPredefinedTypeForClass(classDescriptor);
-            return type == null ? null : type.getClassName();
+            return type == null ? null : type.getInternalName();
         }
 
         @Override

@@ -159,7 +159,7 @@ internal object TypeMappingConfigurationImpl : TypeMappingConfiguration<JvmType>
     }
 
     override fun getPredefinedTypeForClass(classDescriptor: ClassDescriptor) = null
-    override fun getPredefinedTypeNameForClass(classDescriptor: ClassDescriptor): String? = null
+    override fun getPredefinedInternalNameForClass(classDescriptor: ClassDescriptor): String? = null
 
     override fun processErrorType(kotlinType: KotlinType, descriptor: ClassDescriptor) {
         // DO nothing
