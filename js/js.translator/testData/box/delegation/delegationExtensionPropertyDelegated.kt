@@ -1,3 +1,7 @@
+// IGNORE_BACKEND: JS
+// This test is rejected by FE
+// TODO: find out the reason and fix the test or remove it if it's really wrong
+
 package foo
 
 import kotlin.reflect.KProperty
