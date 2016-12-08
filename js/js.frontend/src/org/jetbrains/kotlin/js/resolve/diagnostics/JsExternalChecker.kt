@@ -19,7 +19,6 @@ package org.jetbrains.kotlin.js.resolve.diagnostics
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
 import org.jetbrains.kotlin.descriptors.*
 import org.jetbrains.kotlin.diagnostics.DiagnosticSink
-import org.jetbrains.kotlin.diagnostics.Errors
 import org.jetbrains.kotlin.js.PredefinedAnnotation
 import org.jetbrains.kotlin.js.translate.utils.AnnotationsUtils
 import org.jetbrains.kotlin.lexer.KtTokens
@@ -28,7 +27,10 @@ import org.jetbrains.kotlin.psi.KtProperty
 import org.jetbrains.kotlin.resolve.BindingContext
 import org.jetbrains.kotlin.resolve.DescriptorUtils
 import org.jetbrains.kotlin.resolve.checkers.SimpleDeclarationChecker
-import org.jetbrains.kotlin.resolve.descriptorUtil.*
+import org.jetbrains.kotlin.resolve.descriptorUtil.fqNameUnsafe
+import org.jetbrains.kotlin.resolve.descriptorUtil.getSuperClassNotAny
+import org.jetbrains.kotlin.resolve.descriptorUtil.getSuperInterfaces
+import org.jetbrains.kotlin.resolve.descriptorUtil.isExtension
 import org.jetbrains.kotlin.utils.singletonOrEmptyList
 
 class JsExternalChecker : SimpleDeclarationChecker {
@@ -85,8 +87,12 @@ class JsExternalChecker : SimpleDeclarationChecker {
     private fun isPrivateNonInlineMemberOfExternalClass(descriptor: DeclarationDescriptor): Boolean {
         if (descriptor is PropertyAccessorDescriptor) return false
         if (descriptor !is MemberDescriptor || descriptor.visibility != Visibilities.PRIVATE) return false
+
+        // We decided to postpone KT-14031. In case we implement this issue, it'd be useful to uncomment these lines
+        /*
         if (descriptor is FunctionDescriptor && descriptor.isInline) return false
         if (descriptor is PropertyDescriptor && descriptor.accessors.all { it.isInline }) return false
+        */
 
         val containingDeclaration = descriptor.containingDeclaration as? ClassDescriptor ?: return false
         return AnnotationsUtils.isNativeObject(containingDeclaration)

@@ -1,5 +1,6 @@
 // !DIAGNOSTICS: -NOTHING_TO_INLINE
 // TODO: should we disable NOTHING_TO_INLINE in JS backend?
+// TODO: uncomment declartaions in case we decide to implement KT-14031
 
 external class C {
     <!WRONG_EXTERNAL_DECLARATION!>private fun a(): Int<!>
@@ -12,10 +13,12 @@ external class C {
         get
         set
 
+    /*
     private inline fun inline_a(): Int = 23
 
     private inline val inline_prop: Int
         get() = 42
+    */
 }
 
 external object O {
@@ -29,10 +32,12 @@ external object O {
         get
         set
 
+    /*
     private inline fun inline_a(): Int = 23
 
     private inline val inline_prop: Int
         get() = 42
+    */
 }
 
 external class Outer {
@@ -47,9 +52,11 @@ external class Outer {
             get
             set
 
+        /*
         private inline fun inline_a(): Int = 23
 
         private inline val inline_prop: Int
             get() = 42
+        */
     }
 }
