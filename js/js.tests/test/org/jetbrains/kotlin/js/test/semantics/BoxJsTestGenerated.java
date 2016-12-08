@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 @RunWith(JUnit3RunnerWithInners.class)
 public class BoxJsTestGenerated extends AbstractBoxJsTest {
     public void testAllFilesPresentInBox() throws Exception {
-        KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+        KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
     }
 
     @TestMetadata("js/js.translator/testData/box/annotation")
@@ -41,7 +41,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Annotation extends AbstractBoxJsTest {
         public void testAllFilesPresentInAnnotation() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/annotation"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/annotation"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("annotationClass.kt")
@@ -56,7 +56,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class CallableReference extends AbstractBoxJsTest {
         public void testAllFilesPresentInCallableReference() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/callableReference"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/callableReference"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("js/js.translator/testData/box/callableReference/function")
@@ -70,7 +70,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
             }
 
             public void testAllFilesPresentInFunction() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/callableReference/function"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/callableReference/function"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("classMemberAndExtension.kt")
@@ -295,7 +295,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
             }
 
             public void testAllFilesPresentInProperty() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/callableReference/property"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/callableReference/property"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("delegated.kt")
@@ -383,7 +383,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Char extends AbstractBoxJsTest {
         public void testAllFilesPresentInChar() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/char"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/char"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("charBinaryOperations.kt")
@@ -446,7 +446,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         }
 
         public void testAllFilesPresentInClassObject() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/classObject"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/classObject"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("defaultObjectSameNamesAsInOuter.kt")
@@ -509,7 +509,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Closure extends AbstractBoxJsTest {
         public void testAllFilesPresentInClosure() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/closure"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/closure"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("closureArrayListInstance.kt")
@@ -788,7 +788,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class CrossModuleRef extends AbstractBoxJsTest {
         public void testAllFilesPresentInCrossModuleRef() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/crossModuleRef"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/crossModuleRef"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("callableObjectRef.kt")
@@ -863,7 +863,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class DataClass extends AbstractBoxJsTest {
         public void testAllFilesPresentInDataClass() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/dataClass"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/dataClass"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("components.kt")
@@ -920,7 +920,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class DefaultArguments extends AbstractBoxJsTest {
         public void testAllFilesPresentInDefaultArguments() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/defaultArguments"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/defaultArguments"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("complexExpressionAsDefaultArgument.kt")
@@ -1019,7 +1019,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class DelegateProperty extends AbstractBoxJsTest {
         public void testAllFilesPresentInDelegateProperty() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/delegateProperty"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/delegateProperty"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("capturedLocalVal.kt")
@@ -1142,7 +1142,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Delegation extends AbstractBoxJsTest {
         public void testAllFilesPresentInDelegation() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/delegation"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/delegation"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("complexDelegation.kt")
@@ -1244,7 +1244,13 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @TestMetadata("delegationExtensionPropertyDelegated.kt")
         public void testDelegationExtensionPropertyDelegated() throws Exception {
             String fileName = KotlinTestUtils.navigationMetadata("js/js.translator/testData/box/delegation/delegationExtensionPropertyDelegated.kt");
-            doTest(fileName);
+            try {
+                doTest(fileName);
+            }
+            catch (Throwable ignore) {
+                return;
+            }
+            throw new AssertionError("Looks like this test can be unmuted. Remove IGNORE_BACKEND directive for that.");
         }
 
         @TestMetadata("delegationGenericArg.kt")
@@ -1277,7 +1283,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Dynamic extends AbstractBoxJsTest {
         public void testAllFilesPresentInDynamic() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/dynamic"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/dynamic"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("binaryOperations.kt")
@@ -1412,7 +1418,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         }
 
         public void testAllFilesPresentInEnum() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/enum"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/enum"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("enumInheritedFromTrait.kt")
@@ -1481,7 +1487,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Examples extends AbstractBoxJsTest {
         public void testAllFilesPresentInExamples() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/examples"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/examples"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("basicmethod.kt")
@@ -1664,7 +1670,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Expression extends AbstractBoxJsTest {
         public void testAllFilesPresentInExpression() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("js/js.translator/testData/box/expression/cast")
@@ -1672,7 +1678,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Cast extends AbstractBoxJsTest {
             public void testAllFilesPresentInCast() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/cast"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/cast"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("castExtensionToKMutableProperty.kt")
@@ -1837,7 +1843,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class CompareTo extends AbstractBoxJsTest {
             public void testAllFilesPresentInCompareTo() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/compareTo"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/compareTo"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("customCompareToMethod.kt")
@@ -1852,7 +1858,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class DollarParameter extends AbstractBoxJsTest {
             public void testAllFilesPresentInDollarParameter() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/dollarParameter"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/dollarParameter"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("dollarParameter.kt")
@@ -1867,7 +1873,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Equals extends AbstractBoxJsTest {
             public void testAllFilesPresentInEquals() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/equals"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/equals"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("arrays.kt")
@@ -1960,7 +1966,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
             }
 
             public void testAllFilesPresentInEvaluationOrder() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/evaluationOrder"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/evaluationOrder"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("andAndWithBreakContinueReturn.kt")
@@ -2143,7 +2149,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class For extends AbstractBoxJsTest {
             public void testAllFilesPresentInFor() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/for"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/for"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("forIteratesOverArray.kt")
@@ -2230,7 +2236,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
             }
 
             public void testAllFilesPresentInFunction() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/function"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/function"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("callFunInInit.kt")
@@ -2425,7 +2431,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class IdentifierClash extends AbstractBoxJsTest {
             public void testAllFilesPresentInIdentifierClash() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/identifierClash"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/identifierClash"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("overloadedFun.kt")
@@ -2446,7 +2452,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class IdentityEquals extends AbstractBoxJsTest {
             public void testAllFilesPresentInIdentityEquals() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/identityEquals"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/identityEquals"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("identityEqualsMethod.kt")
@@ -2467,7 +2473,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class If extends AbstractBoxJsTest {
             public void testAllFilesPresentInIf() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/if"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/if"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("ifElseAsExpressionWithThrow.kt")
@@ -2500,7 +2506,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Invoke extends AbstractBoxJsTest {
             public void testAllFilesPresentInInvoke() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/invoke"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/invoke"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("explicitInvokeLambda.kt")
@@ -2581,7 +2587,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Misc extends AbstractBoxJsTest {
             public void testAllFilesPresentInMisc() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/misc"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/misc"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("classWithoutPackage.kt")
@@ -2836,7 +2842,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class StringClass extends AbstractBoxJsTest {
             public void testAllFilesPresentInStringClass() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/stringClass"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/stringClass"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("extensionMethods.kt")
@@ -2929,7 +2935,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class StringTemplates extends AbstractBoxJsTest {
             public void testAllFilesPresentInStringTemplates() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/stringTemplates"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/stringTemplates"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("objectWithToString.kt")
@@ -2950,7 +2956,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Try extends AbstractBoxJsTest {
             public void testAllFilesPresentInTry() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/try"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/try"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("exceptionToString.kt")
@@ -3013,7 +3019,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class When extends AbstractBoxJsTest {
             public void testAllFilesPresentInWhen() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/when"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/when"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("doWhileWithOneStmWhen.kt")
@@ -3202,7 +3208,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class While extends AbstractBoxJsTest {
             public void testAllFilesPresentInWhile() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/while"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/expression/while"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("doWhileWithComplexCondition.kt")
@@ -3242,7 +3248,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class ExtensionFunction extends AbstractBoxJsTest {
         public void testAllFilesPresentInExtensionFunction() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/extensionFunction"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/extensionFunction"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("extensionForSuperclass.kt")
@@ -3353,7 +3359,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         }
 
         public void testAllFilesPresentInExtensionProperty() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/extensionProperty"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/extensionProperty"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("externalExtensionProperty.kt")
@@ -3398,7 +3404,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         }
 
         public void testAllFilesPresentInInheritance() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inheritance"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inheritance"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("baseCall.kt")
@@ -3520,7 +3526,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
             }
 
             public void testAllFilesPresentInInterfaces() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inheritance/interfaces"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inheritance/interfaces"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("withDefaultMethod.kt")
@@ -3548,7 +3554,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Initialize extends AbstractBoxJsTest {
         public void testAllFilesPresentInInitialize() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/initialize"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/initialize"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("classInitializer.kt")
@@ -3593,7 +3599,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Inline extends AbstractBoxJsTest {
         public void testAllFilesPresentInInline() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inline"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inline"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("anonymousFunction.kt")
@@ -3974,7 +3980,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class InlineEvaluationOrder extends AbstractBoxJsTest {
         public void testAllFilesPresentInInlineEvaluationOrder() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineEvaluationOrder"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineEvaluationOrder"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("argumentOfCall.kt")
@@ -4283,7 +4289,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class InlineMultiFile extends AbstractBoxJsTest {
         public void testAllFilesPresentInInlineMultiFile() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineMultiFile"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineMultiFile"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("anonymousObjectOnCallSite.kt")
@@ -4460,7 +4466,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class InlineMultiModule extends AbstractBoxJsTest {
         public void testAllFilesPresentInInlineMultiModule() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineMultiModule"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineMultiModule"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("anotherModuleValInClosure.kt")
@@ -4559,7 +4565,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class InlineSizeReduction extends AbstractBoxJsTest {
         public void testAllFilesPresentInInlineSizeReduction() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineSizeReduction"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineSizeReduction"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("inlineImportCleanup.kt")
@@ -4652,7 +4658,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class InlineStdlib extends AbstractBoxJsTest {
         public void testAllFilesPresentInInlineStdlib() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineStdlib"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/inlineStdlib"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("callNameClash.kt")
@@ -4709,7 +4715,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Java extends AbstractBoxJsTest {
         public void testAllFilesPresentInJava() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/java"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/java"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("js/js.translator/testData/box/java/abstractList")
@@ -4717,7 +4723,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class AbstractList extends AbstractBoxJsTest {
             public void testAllFilesPresentInAbstractList() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/java/abstractList"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/java/abstractList"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("iterator.kt")
@@ -4738,7 +4744,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
             }
 
             public void testAllFilesPresentInArrayList() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/java/arrayList"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/java/arrayList"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("arrayAccess.kt")
@@ -4838,7 +4844,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class JsCode extends AbstractBoxJsTest {
         public void testAllFilesPresentInJsCode() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/jsCode"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/jsCode"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("break.kt")
@@ -4979,7 +4985,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class JsModule extends AbstractBoxJsTest {
         public void testAllFilesPresentInJsModule() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/jsModule"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/jsModule"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("externalClass.kt")
@@ -5054,7 +5060,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class JsName extends AbstractBoxJsTest {
         public void testAllFilesPresentInJsName() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/jsName"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/jsName"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("avoidNameClash.kt")
@@ -5129,7 +5135,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Labels extends AbstractBoxJsTest {
         public void testAllFilesPresentInLabels() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/labels"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/labels"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("labelOnExpression.kt")
@@ -5204,7 +5210,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class MultiFile extends AbstractBoxJsTest {
         public void testAllFilesPresentInMultiFile() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiFile"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiFile"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("classOfTheSameNameInAnotherPackage.kt")
@@ -5249,7 +5255,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class MultiModule extends AbstractBoxJsTest {
         public void testAllFilesPresentInMultiModule() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModule"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModule"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("moduleAndVariableNameClash.kt")
@@ -5282,7 +5288,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class MultiModuleWrappers extends AbstractBoxJsTest {
         public void testAllFilesPresentInMultiModuleWrappers() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("js/js.translator/testData/box/multiModuleWrappers/amd")
@@ -5290,7 +5296,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Amd extends AbstractBoxJsTest {
             public void testAllFilesPresentInAmd() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/amd"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/amd"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("jsModuleOnPackage.kt")
@@ -5317,7 +5323,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Common_js extends AbstractBoxJsTest {
             public void testAllFilesPresentInCommon_js() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/common_js"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/common_js"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("moduleWithNonIdentifierName.kt")
@@ -5338,7 +5344,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Plain extends AbstractBoxJsTest {
             public void testAllFilesPresentInPlain() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/plain"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/plain"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("moduleWithNonIdentifierName.kt")
@@ -5359,7 +5365,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @RunWith(JUnit3RunnerWithInners.class)
         public static class Umd extends AbstractBoxJsTest {
             public void testAllFilesPresentInUmd() throws Exception {
-                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/umd"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+                KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiModuleWrappers/umd"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
             }
 
             @TestMetadata("moduleWithNonIdentifierName.kt")
@@ -5381,7 +5387,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class MultiPackage extends AbstractBoxJsTest {
         public void testAllFilesPresentInMultiPackage() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiPackage"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multiPackage"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("classesInheritedFromOtherPackage.kt")
@@ -5444,7 +5450,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Multideclaration extends AbstractBoxJsTest {
         public void testAllFilesPresentInMultideclaration() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multideclaration"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/multideclaration"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("multiValForArray.kt")
@@ -5495,7 +5501,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class NameClashes extends AbstractBoxJsTest {
         public void testAllFilesPresentInNameClashes() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/nameClashes"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/nameClashes"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("classAndCompanionObjectMembers.kt")
@@ -5570,7 +5576,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Native extends AbstractBoxJsTest {
         public void testAllFilesPresentInNative() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/native"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/native"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("castToNativeClassChecked.kt")
@@ -5789,7 +5795,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class NestedTypes extends AbstractBoxJsTest {
         public void testAllFilesPresentInNestedTypes() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/nestedTypes"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/nestedTypes"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("implicitOuterThisFromLambda.kt")
@@ -5894,7 +5900,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Number extends AbstractBoxJsTest {
         public void testAllFilesPresentInNumber() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/number"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/number"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("byteAndShortConversions.kt")
@@ -6023,7 +6029,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class ObjectDeclaration extends AbstractBoxJsTest {
         public void testAllFilesPresentInObjectDeclaration() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/objectDeclaration"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/objectDeclaration"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("dontPolluteObject.kt")
@@ -6098,7 +6104,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class OperatorOverloading extends AbstractBoxJsTest {
         public void testAllFilesPresentInOperatorOverloading() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/operatorOverloading"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/operatorOverloading"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("augmentedAssignmentLhs.kt")
@@ -6257,7 +6263,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         }
 
         public void testAllFilesPresentInPropertyAccess() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/propertyAccess"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/propertyAccess"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("classUsesPackageProperties.kt")
@@ -6386,7 +6392,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class PropertyOverride extends AbstractBoxJsTest {
         public void testAllFilesPresentInPropertyOverride() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/propertyOverride"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/propertyOverride"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("checkSupertypeOrder.kt")
@@ -6461,7 +6467,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Range extends AbstractBoxJsTest {
         public void testAllFilesPresentInRange() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/range"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/range"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("creatingProgressions.kt")
@@ -6530,7 +6536,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Reflection extends AbstractBoxJsTest {
         public void testAllFilesPresentInReflection() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/reflection"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/reflection"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("jsClass.kt")
@@ -6605,7 +6611,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Regression extends AbstractBoxJsTest {
         public void testAllFilesPresentInRegression() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/regression"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/regression"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("kt2470.kt")
@@ -6626,7 +6632,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Reified extends AbstractBoxJsTest {
         public void testAllFilesPresentInReified() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/reified"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/reified"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("callChain.kt")
@@ -6749,7 +6755,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Rtti extends AbstractBoxJsTest {
         public void testAllFilesPresentInRtti() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/rtti"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/rtti"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("collectionClassesIsCheck.kt")
@@ -6848,7 +6854,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class SafeCall extends AbstractBoxJsTest {
         public void testAllFilesPresentInSafeCall() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/safeCall"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/safeCall"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("safeAccess.kt")
@@ -6893,7 +6899,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Simple extends AbstractBoxJsTest {
         public void testAllFilesPresentInSimple() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/simple"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/simple"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("assign.kt")
@@ -7064,7 +7070,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class StandardClasses extends AbstractBoxJsTest {
         public void testAllFilesPresentInStandardClasses() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/standardClasses"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/standardClasses"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("any.kt")
@@ -7151,7 +7157,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class SuperCall extends AbstractBoxJsTest {
         public void testAllFilesPresentInSuperCall() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/superCall"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/superCall"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("classSuperCall.kt")
@@ -7178,7 +7184,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
     @RunWith(JUnit3RunnerWithInners.class)
     public static class Trait extends AbstractBoxJsTest {
         public void testAllFilesPresentInTrait() throws Exception {
-            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/trait"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.ANY, true);
+            KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("js/js.translator/testData/box/trait"), Pattern.compile("^([^_](.+))\\.kt$"), TargetBackend.JS, true);
         }
 
         @TestMetadata("checkImplementationCharacteristics.kt")

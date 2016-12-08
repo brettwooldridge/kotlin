@@ -1208,7 +1208,7 @@ fun main(args: Array<String>) {
 
     testGroup("js/js.tests/test", "js/js.translator/testData") {
         testClass<AbstractBoxJsTest>() {
-            model("box/", pattern = "^([^_](.+))\\.kt$")
+            model("box/", pattern = "^([^_](.+))\\.kt$", targetBackend = TargetBackend.JS)
         }
     }
 
