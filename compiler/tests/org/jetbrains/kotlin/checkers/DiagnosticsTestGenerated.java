@@ -13389,6 +13389,12 @@ public class DiagnosticsTestGenerated extends AbstractDiagnosticsTest {
                 String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/operatorRem/remWithModAssign.kt");
                 doTest(fileName);
             }
+
+            @TestMetadata("resolveToModWhenNoOperatorRemFeature.kt")
+            public void testResolveToModWhenNoOperatorRemFeature() throws Exception {
+                String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/operatorRem/resolveToModWhenNoOperatorRemFeature.kt");
+                doTest(fileName);
+            }
         }
 
         @TestMetadata("compiler/testData/diagnostics/tests/operatorsOverloading")
