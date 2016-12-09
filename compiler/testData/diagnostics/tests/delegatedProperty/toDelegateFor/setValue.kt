@@ -1,13 +1,16 @@
 // !DIAGNOSTICS: -UNUSED_PARAMETER
 
-class Delegate
+class Delegate<T>
 
-operator fun Delegate.getValue(receiver: Any, p: Any): Int = 42
-operator fun <T> Delegate.setValue(receiver: Any, p: Any, value: T) {}
+operator fun Delegate<*>.getValue(receiver: Any?, p: Any): String = ""
+operator fun <T> Delegate<T>.setValue(receiver: Any?, p: Any, value: T) {}
 
-operator fun String.toDelegateFor(receiver: Any, p: Any) = Delegate()
+operator fun <T> String.toDelegateFor(receiver: Any?, p: Any) = Delegate<T>()
 
-// No 'toDelegateFor': doesn't work
-val test1 by <!DELEGATE_SPECIAL_FUNCTION_NONE_APPLICABLE!>Delegate()<!>
+var test1: String by <!TYPE_INFERENCE_NO_INFORMATION_FOR_PARAMETER!>Delegate<!>()
+var test2: String by Delegate<String>()
 
-val test2 by <!DELEGATE_SPECIAL_FUNCTION_NONE_APPLICABLE, DELEGATE_SPECIAL_FUNCTION_MISSING!>"OK"<!>
+var test3: String by <!DELEGATE_SPECIAL_FUNCTION_NONE_APPLICABLE, DELEGATE_SPECIAL_FUNCTION_MISSING, DELEGATE_SPECIAL_FUNCTION_MISSING!>"OK"<!>
+
+var test4: String by "OK".<!TYPE_INFERENCE_NO_INFORMATION_FOR_PARAMETER!>toDelegateFor<!>(null, "")
+var test5: String by "OK".toDelegateFor<String>(null, "")

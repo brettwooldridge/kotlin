@@ -512,7 +512,7 @@ class DelegatedPropertyResolver(
             ) {
                 val extensionReceiver = variableDescriptor.extensionReceiverParameter
                 val dispatchReceiver = variableDescriptor.dispatchReceiverParameter
-                val typeOfThis = (if (dispatchReceiverOnly) dispatchReceiver?.type else extensionReceiver?.type ?: dispatchReceiver?.type)
+                val typeOfThis = (if (dispatchReceiverOnly) dispatchReceiver?.type else (extensionReceiver?.type ?: dispatchReceiver?.type))
                                  ?: builtIns.nullableNothingType
 
                 val valueParameters = resultingDescriptor.valueParameters

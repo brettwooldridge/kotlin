@@ -5841,6 +5841,12 @@ public class DiagnosticsTestGenerated extends AbstractDiagnosticsTest {
                     KotlinTestUtils.assertAllTestsPresentByMetadata(this.getClass(), new File("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor"), Pattern.compile("^(.+)\\.kt$"), TargetBackend.ANY, true);
                 }
 
+                @TestMetadata("commonCaseForInference.kt")
+                public void testCommonCaseForInference() throws Exception {
+                    String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/commonCaseForInference.kt");
+                    doTest(fileName);
+                }
+
                 @TestMetadata("genericToDelegateFor.kt")
                 public void testGenericToDelegateFor() throws Exception {
                     String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/genericToDelegateFor.kt");
@@ -5865,21 +5871,15 @@ public class DiagnosticsTestGenerated extends AbstractDiagnosticsTest {
                     doTest(fileName);
                 }
 
-                @TestMetadata("hostAndReceiver4.kt")
-                public void testHostAndReceiver4() throws Exception {
-                    String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/hostAndReceiver4.kt");
+                @TestMetadata("inferenceFromReceiver1.kt")
+                public void testInferenceFromReceiver1() throws Exception {
+                    String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/inferenceFromReceiver1.kt");
                     doTest(fileName);
                 }
 
-                @TestMetadata("hostAndReceiver5.kt")
-                public void testHostAndReceiver5() throws Exception {
-                    String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/hostAndReceiver5.kt");
-                    doTest(fileName);
-                }
-
-                @TestMetadata("hostAndReceiver6.kt")
-                public void testHostAndReceiver6() throws Exception {
-                    String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/hostAndReceiver6.kt");
+                @TestMetadata("inferenceFromReceiver2.kt")
+                public void testInferenceFromReceiver2() throws Exception {
+                    String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/toDelegateFor/inferenceFromReceiver2.kt");
                     doTest(fileName);
                 }
 
