@@ -106,7 +106,7 @@ class DelegatedPropertyResolver(
         val createDelegateResolvedCall = trace.bindingContext.get(TO_DELEGATE_FOR_RESOLVED_CALL, variableDescriptor)
         if (createDelegateResolvedCall != null) {
             return createDelegateResolvedCall.resultingDescriptor.returnType
-                   ?: throw AssertionError("No return type fore 'createDelegate' of ${delegateExpression.text}")
+                   ?: throw AssertionError("No return type fore 'toDelegateFor' of ${delegateExpression.text}")
         }
         return byExpressionType
     }
