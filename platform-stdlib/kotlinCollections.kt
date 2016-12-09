@@ -1,6 +1,6 @@
 package kotlin.collections
 
-public platform data class IndexedValue<out T>(public val index: Int, public val value: T)
+public platform class IndexedValue<out T>(index: Int, value: T)
 
 
 open platform class ArrayList<E> : MutableList<E> {

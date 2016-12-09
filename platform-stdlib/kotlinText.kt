@@ -34,6 +34,27 @@ platform class MatchGroup
 
 platform enum class RegexOption
 
+public platform interface MatchGroupCollection : Collection<MatchGroup?> {
+    public operator fun get(index: Int): MatchGroup?
+}
+
+public platform interface MatchNamedGroupCollection : MatchGroupCollection {
+    public operator fun get(name: String): MatchGroup?
+}
+
+
+public platform interface MatchResult {
+    public val range: IntRange
+    public val value: String
+    public val groups: MatchGroupCollection
+    public val groupValues: List<String>
+    //public val destructured: Destructured
+
+    public fun next(): MatchResult?
+
+
+}
+
 // From char.kt
 
 platform fun Char.isWhitespace(): Boolean

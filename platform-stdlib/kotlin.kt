@@ -58,10 +58,7 @@ platform object Math {
     fun min(a: Int, b: Int): Int
 }
 
-public platform data class Pair<out A, out B>(
+public platform class Pair<out A, out B>(
         first: A,
         second: B
-) {
-    public val first: A
-    public val second: B
-}
+)

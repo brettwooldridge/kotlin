@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package kotlin.ranges
 
 public platform interface ClosedComparableRange<T: Comparable<T>> : ClosedRange<T> {
-    override fun contains(value: T): Boolean = lessThanOrEquals(start, value) && lessThanOrEquals(value, endInclusive)
-    override fun isEmpty(): Boolean = !lessThanOrEquals(start, endInclusive)
+    override fun contains(value: T): Boolean
+    override fun isEmpty(): Boolean
 
     /**
      * Compares two values of range domain type and returns true if first is less than or equal to second.
