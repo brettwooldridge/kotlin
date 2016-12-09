@@ -1,5 +1,8 @@
 package kotlin.collections
 
+public platform data class IndexedValue<out T>(public val index: Int, public val value: T)
+
+
 open platform class ArrayList<E> : MutableList<E> {
     constructor(capacity: Int)
     constructor()
@@ -115,108 +118,6 @@ platform abstract class AbstractMutableList<E> : MutableList<E> {
     override fun subList(fromIndex: Int, toIndex: Int): MutableList<E>
 }
 
-// From kotlin_special.kt
-
-platform fun <T> Array<out T>.asList(): List<T>
-platform inline fun BooleanArray.asList(): List<Boolean>
-platform inline fun ByteArray.asList(): List<Byte>
-platform inline fun CharArray.asList(): List<Char>
-platform inline fun DoubleArray.asList(): List<Double>
-platform inline fun FloatArray.asList(): List<Float>
-platform inline fun IntArray.asList(): List<Int>
-platform inline fun LongArray.asList(): List<Long>
-platform inline fun ShortArray.asList(): List<Short>
-
-platform inline fun <T> Array<out T>.copyOf(): Array<T>
-platform inline fun BooleanArray.copyOf(): BooleanArray
-platform inline fun ByteArray.copyOf(): ByteArray
-platform inline fun CharArray.copyOf(): CharArray
-platform inline fun DoubleArray.copyOf(): DoubleArray
-platform inline fun FloatArray.copyOf(): FloatArray
-platform inline fun IntArray.copyOf(): IntArray
-platform inline fun LongArray.copyOf(): LongArray
-platform inline fun ShortArray.copyOf(): ShortArray
-
-platform fun ByteArray.copyOf(newSize: Int): ByteArray
-platform fun ShortArray.copyOf(newSize: Int): ShortArray
-platform fun IntArray.copyOf(newSize: Int): IntArray
-platform fun LongArray.copyOf(newSize: Int): LongArray
-platform fun FloatArray.copyOf(newSize: Int): FloatArray
-platform fun DoubleArray.copyOf(newSize: Int): DoubleArray
-platform fun BooleanArray.copyOf(newSize: Int): BooleanArray
-platform fun CharArray.copyOf(newSize: Int): CharArray
-platform fun <T> Array<out T>.copyOf(newSize: Int): Array<T?>
-
-platform inline fun <T> Array<out T>.copyOfRange(fromIndex: Int, toIndex: Int): Array<T>
-platform inline fun BooleanArray.copyOfRange(fromIndex: Int, toIndex: Int): BooleanArray
-platform inline fun ByteArray.copyOfRange(fromIndex: Int, toIndex: Int): ByteArray
-platform inline fun CharArray.copyOfRange(fromIndex: Int, toIndex: Int): CharArray
-platform inline fun DoubleArray.copyOfRange(fromIndex: Int, toIndex: Int): DoubleArray
-platform inline fun FloatArray.copyOfRange(fromIndex: Int, toIndex: Int): FloatArray
-platform inline fun IntArray.copyOfRange(fromIndex: Int, toIndex: Int): IntArray
-platform inline fun LongArray.copyOfRange(fromIndex: Int, toIndex: Int): LongArray
-platform inline fun ShortArray.copyOfRange(fromIndex: Int, toIndex: Int): ShortArray
-
-platform inline operator fun <T> Array<out T>.plus(element: T): Array<T>
-platform inline operator fun BooleanArray.plus(element: Boolean): BooleanArray
-platform inline operator fun ByteArray.plus(element: Byte): ByteArray
-platform inline operator fun CharArray.plus(element: Char): CharArray
-platform inline operator fun DoubleArray.plus(element: Double): DoubleArray
-platform inline operator fun FloatArray.plus(element: Float): FloatArray
-platform inline operator fun IntArray.plus(element: Int): IntArray
-platform inline operator fun LongArray.plus(element: Long): LongArray
-platform inline operator fun ShortArray.plus(element: Short): ShortArray
-
-platform operator fun <T> Array<out T>.plus(elements: Collection<T>): Array<T>
-platform operator fun BooleanArray.plus(elements: Collection<Boolean>): BooleanArray
-platform operator fun ByteArray.plus(elements: Collection<Byte>): ByteArray
-platform operator fun CharArray.plus(elements: Collection<Char>): CharArray
-platform operator fun DoubleArray.plus(elements: Collection<Double>): DoubleArray
-platform operator fun FloatArray.plus(elements: Collection<Float>): FloatArray
-platform operator fun IntArray.plus(elements: Collection<Int>): IntArray
-platform operator fun LongArray.plus(elements: Collection<Long>): LongArray
-platform operator fun ShortArray.plus(elements: Collection<Short>): ShortArray
-
-platform inline operator fun <T> Array<out T>.plus(elements: Array<out T>): Array<T>
-platform inline operator fun BooleanArray.plus(elements: BooleanArray): BooleanArray
-platform inline operator fun ByteArray.plus(elements: ByteArray): ByteArray
-platform inline operator fun CharArray.plus(elements: CharArray): CharArray
-platform inline operator fun DoubleArray.plus(elements: DoubleArray): DoubleArray
-platform inline operator fun FloatArray.plus(elements: FloatArray): FloatArray
-platform inline operator fun IntArray.plus(elements: IntArray): IntArray
-platform inline operator fun LongArray.plus(elements: LongArray): LongArray
-platform inline operator fun ShortArray.plus(elements: ShortArray): ShortArray
-
-platform inline fun <T> Array<out T>.plusElement(element: T): Array<T>
-
-platform fun ByteArray.sort(): Unit
-platform fun CharArray.sort(): Unit
-platform fun DoubleArray.sort(): Unit
-platform fun FloatArray.sort(): Unit
-platform fun IntArray.sort(): Unit
-platform fun ShortArray.sort(): Unit
-platform fun <T: Comparable<T>> Array<out T>.sort(): Unit
-platform fun LongArray.sort(): Unit
-
-platform fun <T> Array<out T>.sort(comparison: (T, T) -> Int): Unit
-platform fun ByteArray.sort(comparison: (Byte, Byte) -> Int): Unit
-platform fun CharArray.sort(comparison: (Char, Char) -> Int): Unit
-platform fun DoubleArray.sort(comparison: (Double, Double) -> Int): Unit
-platform fun FloatArray.sort(comparison: (Float, Float) -> Int): Unit
-platform fun IntArray.sort(comparison: (Int, Int) -> Int): Unit
-platform fun LongArray.sort(comparison: (Long, Long) -> Int): Unit
-platform fun ShortArray.sort(comparison: (Short, Short) -> Int): Unit
-
-platform fun <T> Array<out T>.sortWith(comparator: Comparator<in T>): Unit
-
-platform fun BooleanArray.toTypedArray(): Array<Boolean>
-platform fun ByteArray.toTypedArray(): Array<Byte>
-platform fun CharArray.toTypedArray(): Array<Char>
-platform fun DoubleArray.toTypedArray(): Array<Double>
-platform fun FloatArray.toTypedArray(): Array<Float>
-platform fun IntArray.toTypedArray(): Array<Int>
-platform fun LongArray.toTypedArray(): Array<Long>
-platform fun ShortArray.toTypedArray(): Array<Short>
 
 // From collections.kt
 
@@ -224,5 +125,3 @@ platform inline fun <reified T> Collection<T>.toTypedArray(): Array<T>
 
 platform fun <T : Comparable<T>> MutableList<T>.sort(): Unit
 platform fun <T> MutableList<T>.sortWith(comparator: Comparator<in T>): Unit
-platform fun <T> MutableList<T>.reverse(): Unit
-

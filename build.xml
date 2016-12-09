@@ -548,17 +548,25 @@
 
         <!-- TODO: support generation of "common" profile in the preprocessor -->
         <cleandir dir="${output}/stdlib-common-src"/>
-        <kotlin-pp src="libraries/stdlib/src" output="${output}/stdlib-common-src" profile="JS"/>
+        <!--<kotlin-pp src="libraries/stdlib/src" output="${output}/stdlib-common-src" profile="JS"/>-->
 
         <local name="src.line"/>
 
         <path id="src.path">
             <union>
                 <!-- See jslib_files.xml -->
-                <fileset dir="${output}/stdlib-common-src">
+                <!--<fileset dir="${output}/stdlib-common-src">-->
+                    <!--<include name="**/*.kt"/>-->
+                    <!--<exclude name="**/*JVM.kt"/>-->
+                    <!--<exclude name="kotlin/jvm/**"/>-->
+                <!--</fileset>-->
+
+                <fileset dir="${basedir}/libraries/stdlib/src/kotlin">
+                    <include name="internal/Annotations.kt" />
+                </fileset>
+
+                <fileset dir="${basedir}/out/src/stdlib/common">
                     <include name="**/*.kt"/>
-                    <exclude name="**/*JVM.kt"/>
-                    <exclude name="kotlin/jvm/**"/>
                 </fileset>
 
                 <fileset dir="${basedir}/platform-stdlib">

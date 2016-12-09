@@ -57,3 +57,11 @@ platform object Math {
     fun max(a: Int, b: Int): Int
     fun min(a: Int, b: Int): Int
 }
+
+public platform data class Pair<out A, out B>(
+        first: A,
+        second: B
+) {
+    public val first: A
+    public val second: B
+}
