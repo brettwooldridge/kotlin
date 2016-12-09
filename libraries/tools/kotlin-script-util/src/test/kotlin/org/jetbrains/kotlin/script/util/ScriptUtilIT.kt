@@ -100,7 +100,7 @@ done
 
         val scriptClass = compileScript("args-junit-hello-world.kts", StandardArgsScriptTemplateWithMavenResolving::class)
         if (scriptClass == null) {
-            System.err.println(contextClasspath(KOTLIN_JAVA_RUNTIME_JAR, Thread.currentThread().contextClassLoader)?.joinToString())
+            System.err.println("!!!> " + contextClasspath(KOTLIN_JAVA_RUNTIME_JAR, Thread.currentThread().contextClassLoader)?.joinToString())
         }
         Assert.assertNotNull(scriptClass)
         captureOut {
