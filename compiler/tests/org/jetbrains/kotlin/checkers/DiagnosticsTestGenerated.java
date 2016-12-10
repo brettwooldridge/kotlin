@@ -5680,6 +5680,12 @@ public class DiagnosticsTestGenerated extends AbstractDiagnosticsTest {
                 doTest(fileName);
             }
 
+            @TestMetadata("severalReceivers.kt")
+            public void testSeveralReceivers() throws Exception {
+                String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/severalReceivers.kt");
+                doTest(fileName);
+            }
+
             @TestMetadata("thisInDelegate.kt")
             public void testThisInDelegate() throws Exception {
                 String fileName = KotlinTestUtils.navigationMetadata("compiler/testData/diagnostics/tests/delegatedProperty/thisInDelegate.kt");
