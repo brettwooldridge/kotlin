@@ -115,7 +115,7 @@ fun comparables(): List<GenericFunction> {
 
 
     templates add f("minOf(a: T, b: T)") {
-        sourceFile(SourceFile.Ranges)
+        sourceFile(SourceFile.Comparisons)
         only(Primitives, Generic)
         only(numericPrimitives)
         since("1.1")
@@ -135,7 +135,7 @@ fun comparables(): List<GenericFunction> {
     }
 
     templates add f("minOf(a: T, b: T, c: T)") {
-        sourceFile(SourceFile.Ranges)
+        sourceFile(SourceFile.Comparisons)
         only(Primitives, Generic)
         only(numericPrimitives)
         since("1.1")
@@ -152,7 +152,7 @@ fun comparables(): List<GenericFunction> {
     }
 
     templates add f("minOf(a: T, b: T, comparator: Comparator<in T>)") {
-        sourceFile(SourceFile.Ranges)
+        sourceFile(SourceFile.Comparisons)
         only(Generic)
         since("1.1")
         returns("T")
@@ -163,7 +163,7 @@ fun comparables(): List<GenericFunction> {
     }
 
     templates add f("minOf(a: T, b: T, c: T, comparator: Comparator<in T>)") {
-        sourceFile(SourceFile.Ranges)
+        sourceFile(SourceFile.Comparisons)
         only(Generic)
         since("1.1")
         returns("T")

@@ -20,6 +20,8 @@
 
 package kotlin.text
 
+import kotlin.comparisons.*
+
 
 /**
  * Returns a sub sequence of this char sequence having leading and trailing characters matching the [predicate] trimmed.

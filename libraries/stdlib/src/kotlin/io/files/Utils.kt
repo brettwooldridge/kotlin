@@ -5,6 +5,7 @@ package kotlin.io
 
 import java.io.*
 import java.util.*
+import kotlin.comparisons.*
 
 /**
  * Creates an empty directory in the specified [directory], using the given [prefix] and [suffix] to generate its name.
