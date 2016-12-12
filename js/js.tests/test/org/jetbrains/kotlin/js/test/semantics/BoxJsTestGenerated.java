@@ -1244,13 +1244,7 @@ public class BoxJsTestGenerated extends AbstractBoxJsTest {
         @TestMetadata("delegationExtensionPropertyDelegated.kt")
         public void testDelegationExtensionPropertyDelegated() throws Exception {
             String fileName = KotlinTestUtils.navigationMetadata("js/js.translator/testData/box/delegation/delegationExtensionPropertyDelegated.kt");
-            try {
-                doTest(fileName);
-            }
-            catch (Throwable ignore) {
-                return;
-            }
-            throw new AssertionError("Looks like this test can be unmuted. Remove IGNORE_BACKEND directive for that.");
+            doTest(fileName);
         }
 
         @TestMetadata("delegationGenericArg.kt")
