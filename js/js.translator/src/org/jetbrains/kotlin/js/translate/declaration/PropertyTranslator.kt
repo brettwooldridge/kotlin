@@ -117,11 +117,6 @@ class DefaultPropertyTranslator(
             val delegateContext = withAliased.contextWithPropertyMetadataCreationIntrinsified(delegatedCall, descriptor, host)
             val delegatedJsCall = CallTranslator.translate(delegateContext, delegatedCall, delegateReference)
             function.addStatement(delegatedJsCall.makeStmt())
-
-            if (setterDescriptor.isExtension) {
-                val receiver = function.addParameter(getReceiverParameterName(), 0).name
-                (delegatedJsCall as JsInvocation).arguments[0] = receiver.makeRef()
-            }
         }
         else {
             assert(!descriptor.isExtension) { "Unexpected extension property $descriptor}" }
@@ -133,7 +128,7 @@ class DefaultPropertyTranslator(
 
     private fun translateHost(accessorDescriptor: VariableAccessorDescriptor, function: JsFunction): JsExpression {
         return if (accessorDescriptor.isExtension) {
-            function.addParameter(getReceiverParameterName()).name.makeRef()
+            function.addParameter(getReceiverParameterName(), 0).name.makeRef()
         }
         else {
             JsLiteral.THIS
