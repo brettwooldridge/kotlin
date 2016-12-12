@@ -172,6 +172,65 @@ fun comparables(): List<GenericFunction> {
             "return minOf(a, minOf(b, c, comparator), comparator)"
         }
     }
+    
+    templates add f("maxOf(a: T, b: T)") {
+        sourceFile(SourceFile.Comparisons)
+        only(Primitives, Generic)
+        only(numericPrimitives)
+        since("1.1")
+        typeParam("T: Comparable<T>")
+        returns("T")
+        customReceiver("")
+        inline(Primitives) { Inline.Only }
+        bodyForTypes(Primitives, PrimitiveType.Byte, PrimitiveType.Short) { p ->
+            "return Math.max(a.toInt(), b.toInt()).to$p()"
+        }
+        body(Primitives) {
+            "return Math.max(a, b)"
+        }
+        body(Generic) {
+            "return if (a <= b) a else b"
+        }
+    }
+
+    templates add f("maxOf(a: T, b: T, c: T)") {
+        sourceFile(SourceFile.Comparisons)
+        only(Primitives, Generic)
+        only(numericPrimitives)
+        since("1.1")
+        typeParam("T: Comparable<T>")
+        returns("T")
+        customReceiver("")
+        inline(Primitives) { Inline.Only }
+        bodyForTypes(Primitives, PrimitiveType.Byte, PrimitiveType.Short) { p ->
+            "return Math.max(a.toInt(), Math.max(b.toInt(), c.toInt())).to$p()"
+        }
+        body {
+            "return maxOf(a, maxOf(b, c))"
+        }
+    }
+
+    templates add f("maxOf(a: T, b: T, comparator: Comparator<in T>)") {
+        sourceFile(SourceFile.Comparisons)
+        only(Generic)
+        since("1.1")
+        returns("T")
+        customReceiver("")
+        body {
+            "return if (comparator.compare(a, b) >= 0) a else b"
+        }
+    }
+
+    templates add f("maxOf(a: T, b: T, c: T, comparator: Comparator<in T>)") {
+        sourceFile(SourceFile.Comparisons)
+        only(Generic)
+        since("1.1")
+        returns("T")
+        customReceiver("")
+        body {
+            "return maxOf(a, maxOf(b, c, comparator), comparator)"
+        }
+    }
 
 
     templates add f("coerceIn(minimumValue: SELF, maximumValue: SELF)") {

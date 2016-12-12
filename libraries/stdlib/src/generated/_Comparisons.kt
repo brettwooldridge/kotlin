@@ -11,6 +11,98 @@ package kotlin.comparisons
 import kotlin.comparisons.*
 
 @SinceKotlin("1.1")
+public fun <T: Comparable<T>> maxOf(a: T, b: T): T {
+    return if (a <= b) a else b
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Byte, b: Byte): Byte {
+    return Math.max(a.toInt(), b.toInt()).toByte()
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Short, b: Short): Short {
+    return Math.max(a.toInt(), b.toInt()).toShort()
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Int, b: Int): Int {
+    return Math.max(a, b)
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Long, b: Long): Long {
+    return Math.max(a, b)
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Float, b: Float): Float {
+    return Math.max(a, b)
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Double, b: Double): Double {
+    return Math.max(a, b)
+}
+
+@SinceKotlin("1.1")
+public fun <T: Comparable<T>> maxOf(a: T, b: T, c: T): T {
+    return maxOf(a, maxOf(b, c))
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Byte, b: Byte, c: Byte): Byte {
+    return Math.max(a.toInt(), Math.max(b.toInt(), c.toInt())).toByte()
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Short, b: Short, c: Short): Short {
+    return Math.max(a.toInt(), Math.max(b.toInt(), c.toInt())).toShort()
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Int, b: Int, c: Int): Int {
+    return maxOf(a, maxOf(b, c))
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Long, b: Long, c: Long): Long {
+    return maxOf(a, maxOf(b, c))
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Float, b: Float, c: Float): Float {
+    return maxOf(a, maxOf(b, c))
+}
+
+@SinceKotlin("1.1")
+@kotlin.internal.InlineOnly
+public inline fun maxOf(a: Double, b: Double, c: Double): Double {
+    return maxOf(a, maxOf(b, c))
+}
+
+@SinceKotlin("1.1")
+public fun <T> maxOf(a: T, b: T, c: T, comparator: Comparator<in T>): T {
+    return maxOf(a, maxOf(b, c, comparator), comparator)
+}
+
+@SinceKotlin("1.1")
+public fun <T> maxOf(a: T, b: T, comparator: Comparator<in T>): T {
+    return if (comparator.compare(a, b) >= 0) a else b
+}
+
+@SinceKotlin("1.1")
 public fun <T: Comparable<T>> minOf(a: T, b: T): T {
     return if (a <= b) a else b
 }
