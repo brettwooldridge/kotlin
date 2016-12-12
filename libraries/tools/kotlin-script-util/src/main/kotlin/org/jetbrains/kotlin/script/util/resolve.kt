@@ -37,8 +37,8 @@ open class KotlinAnnotatedScriptDependenciesResolver(val baseClassPath: List<Fil
         override val imports = if (previousDependencies != null) emptyList() else listOf(DependsOn::class.java.`package`.name + ".*")
 
         init {
-            println("!!! imports> [${imports.joinToString()}]")
-            println("!!! classpath> [${classpath.joinToString()}]")
+            System.err.println("!!! imports> [${imports.joinToString()}]")
+            System.err.println("!!! classpath> [${classpath.joinToString()}]")
         }
     }
 
